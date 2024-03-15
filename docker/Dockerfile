@@ -4,12 +4,7 @@ FROM base AS deps
 WORKDIR /app
 COPY ./prisma ./
 COPY ./package.json package-lock.json* ./
-RUN \
-    if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-    elif [ -f package-lock.json ]; then npm ci; \
-    elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i; \
-    else echo "Lockfile not found." && exit 1; \
-    fi
+RUN npm install
 
 FROM base AS builder
 ARG DATABASE_URL
@@ -18,12 +13,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV SKIP_ENV_VALIDATION 1
 ENV NEXT_TELEMETRY_DISABLED 1
-RUN \
-    if [ -f yarn.lock ]; then SKIP_ENV_VALIDATION=1 yarn build; \
-    elif [ -f package-lock.json ]; then SKIP_ENV_VALIDATION=1 npm run build; \
-    elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && SKIP_ENV_VALIDATION=1 pnpm run build; \
-    else echo "Lockfile not found." && exit 1; \
-    fi
+RUN SKIP_ENV_VALIDATION=1 npm run build
 
 FROM base AS runner
 WORKDIR /app
@@ -39,5 +29,4 @@ COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
 EXPOSE 3000
-CMD ["server.js"]
 CMD ["sh", "start.sh"]
