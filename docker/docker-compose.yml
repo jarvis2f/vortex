@@ -1,0 +1,42 @@
+version: "3.3"
+
+services:
+  vortex:
+    container_name: vortex
+    image: jarvis2f/vortex:latest
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "18000:3000"
+    depends_on:
+      - vortex-postgres
+      - vortex-redis
+
+  vortex-postgres:
+    container_name: vortex-postgres
+    image: postgres:16.1-alpine3.19
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./db:/var/lib/postgresql/data
+
+  vortex-redis:
+    container_name: vortex-redis
+    image: redis:7.2.4-alpine
+    restart: always
+    command: [redis-server, /etc/redis/redis.conf]
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./redis/data:/data
+      - ./redis/redis.conf:/etc/redis/redis.conf
+    ports:
+      - "18044:6379"

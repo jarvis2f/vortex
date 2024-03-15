@@ -1,0 +1,47 @@
+version: "3.3"
+
+services:
+  vortex:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    env_file:
+      - .env.test
+    depends_on:
+      - vortex-postgres
+      - vortex-redis
+
+  vortex-postgres:
+    image: postgres:16.1-alpine3.19
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=vortex
+    volumes:
+      - ./db:/var/lib/postgresql/data
+
+  vortex-redis:
+    image: redis:7.2.4-alpine
+    command: [redis-server]
+    volumes:
+      - ./redis/data:/data
+
+  vortex-agent-file:
+    build:
+      context: .
+      dockerfile: git@github.com:jarvis2f/vortex-agent.git#main
+      ssh: ["default"]
+    environment:
+      - VORTEX_FILE_PORT=8080
+
+  vortex-agent-alice:
+    image: alpine:3.18
+    command: [echo, "Hello from Alice"]
+    depends_on:
+      - vortex-agent-file
+
+  vortex-agent-bob:
+    image: alpine:3.18
+    command: [echo, "Hello from Bob"]
+    depends_on:
+      - vortex-agent-file

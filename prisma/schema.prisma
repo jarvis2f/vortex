@@ -1,0 +1,363 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Necessary for Next auth
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? // @db.Text
+  access_token      String? // @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? // @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  ADMIN
+  USER
+  AGENT_PROVIDER
+}
+
+enum UserStatus {
+  ACTIVE
+  BANNED
+}
+
+model User {
+  id            String     @id @default(cuid())
+  name          String?
+  email         String?    @unique
+  emailVerified DateTime?
+  password      String?
+  passwordSalt  String?
+  image         String?
+  roles         Role[]     @default([USER])
+  status        UserStatus @default(ACTIVE)
+  createdAt     DateTime   @default(now())
+
+  accounts Account[]
+  sessions Session[]
+
+  agents               Agent[]
+  forwards             Forward[]
+  tickets              Ticket[]
+  networks             Network[]
+  wallets              Wallet?
+  balanceLogs          BalanceLog[]
+  balanceRechargeCodes BalanceRechargeCode[]
+  payments             Payment[]
+  withdrawals          Withdrawal[]
+  ticketReplies        TicketReply[]
+}
+
+model Wallet {
+  id            String   @id @default(cuid())
+  balance       Decimal  @default(0)
+  incomeBalance Decimal  @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model BalanceRechargeCode {
+  id       String  @id @default(cuid())
+  code     String  @unique
+  amount   Decimal
+  used     Boolean @default(false)
+  usedById String?
+
+  user      User?    @relation(fields: [usedById], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum BalanceType {
+  CONSUMPTION
+  INCOME
+}
+
+enum BalanceLogType {
+  DEFAULT
+  ADMIN_UPDATE
+  RECHARGE
+  RECHARGE_CODE
+  TRAFFIC_CONSUMPTION
+  TRAFFIC_INCOME
+  WITHDRAWAL
+}
+
+model BalanceLog {
+  id           Int            @id @default(autoincrement())
+  userId       String
+  amount       Decimal
+  afterBalance Decimal
+  balanceType  BalanceType
+  type         BalanceLogType @default(DEFAULT)
+  extra        String?
+  relatedInfo  Json?
+  createdAt    DateTime       @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+enum PaymentStatus {
+  CREATED
+  SUCCEEDED
+  FAILED
+}
+
+model Payment {
+  id           String        @id @default(cuid())
+  amount       Decimal
+  targetAmount Decimal
+  status       PaymentStatus
+  paymentInfo  Json?
+  callback     Json?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+enum WithdrawalStatus {
+  CREATED
+  WITHDRAWN
+}
+
+model Withdrawal {
+  id        String           @id @default(cuid())
+  amount    Decimal
+  address   String
+  status    WithdrawalStatus
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Log {
+  id      Int      @id @default(autoincrement())
+  time    DateTime @default(now())
+  level   Int
+  message Json
+}
+
+model Config {
+  id         String  @id @default(cuid())
+  relationId String  @default("0")
+  key        String
+  value      String?
+
+  @@unique([relationId, key])
+}
+
+enum AgentStatus {
+  UNKNOWN
+  ONLINE
+  OFFLINE
+}
+
+model Agent {
+  id            String      @id @default(cuid())
+  name          String
+  description   String?
+  connectConfig Json
+  info          Json
+  status        AgentStatus @default(UNKNOWN)
+  isShared      Boolean     @default(false)
+  lastReport    DateTime?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  deleted       Boolean     @default(false)
+
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id])
+
+  stats        AgentStat[]
+  forwards     Forward[]
+  tasks        AgentTask[]
+  networkEdges NetworkEdge[]
+}
+
+model AgentStat {
+  id      Int      @id @default(autoincrement())
+  agentId String
+  time    DateTime @default(now())
+  stat    Json
+
+  agent Agent @relation(fields: [agentId], references: [id])
+}
+
+enum AgentTaskStatus {
+  CREATED
+  SUCCEEDED
+  FAILED
+}
+
+model AgentTask {
+  id        String          @id @default(cuid())
+  agentId   String
+  type      String
+  task      Json
+  result    Json?
+  status    AgentTaskStatus
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  agent Agent @relation(fields: [agentId], references: [id])
+}
+
+enum ForwardMethod {
+  IPTABLES
+  GOST
+}
+
+enum ForwardStatus {
+  CREATED // 已创建
+  CREATED_FAILED // 创建失败
+  RUNNING // 运行中
+  STOPPED // 已停止
+}
+
+enum ForwardTargetType {
+  AGENT
+  EXTERNAL
+}
+
+model Forward {
+  id          String            @id @default(cuid())
+  method      ForwardMethod
+  status      ForwardStatus     @default(CREATED)
+  options     Json?
+  agentPort   Int
+  targetPort  Int
+  target      String
+  targetType  ForwardTargetType @default(EXTERNAL)
+  usedTraffic Int               @default(0)
+  download    Int               @default(0)
+  upload      Int               @default(0)
+  remark      String?
+
+  deleted   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  agentId String
+  agent   Agent  @relation(fields: [agentId], references: [id])
+
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id])
+
+  traffic     ForwardTraffic[]
+  networkEdge NetworkEdge?
+}
+
+model ForwardTraffic {
+  id        Int      @id @default(autoincrement())
+  time      DateTime @default(now())
+  download  Int
+  upload    Int
+  forwardId String
+
+  forward Forward @relation(fields: [forwardId], references: [id])
+}
+
+model Network {
+  id   String @id @default(cuid())
+  name String
+  flow Json
+
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id])
+
+  edges NetworkEdge[]
+
+  deleted   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model NetworkEdge {
+  id              String  @id @default(cuid())
+  networkId       String
+  sourceAgentId   String
+  sourceForwardId String? @unique
+  targetAgentId   String?
+  nextEdgeId      String? @unique
+  deleted         Boolean @default(false)
+
+  network       Network      @relation(fields: [networkId], references: [id])
+  sourceAgent   Agent        @relation(fields: [sourceAgentId], references: [id])
+  sourceForward Forward?     @relation(fields: [sourceForwardId], references: [id])
+  nextEdge      NetworkEdge? @relation("NextEdge", fields: [nextEdgeId], references: [id])
+  lastEdge      NetworkEdge? @relation("NextEdge")
+}
+
+enum TicketStatus {
+  CREATED
+  REPLIED
+  CLOSED
+}
+
+model Ticket {
+  id        String       @id @default(cuid())
+  title     String
+  content   String
+  status    TicketStatus @default(CREATED)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  createdBy     User          @relation(fields: [createdById], references: [id])
+  createdById   String
+  ticketReplies TicketReply[]
+}
+
+model TicketReply {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ticketId String
+  ticket   Ticket @relation(fields: [ticketId], references: [id])
+
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id])
+}
