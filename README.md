@@ -6,13 +6,19 @@ Vortex
   <img src="https://raw.githubusercontent.com/jarvis2f/vortex/main/public/logo-3d.png" alt="Vortex Logo" width="200" />
 </p>
 
-Vortex is a simple and fast web application. It is built with Next.js, Tailwind CSS, and Prisma.
+<p align="center">
+    Vortex is a simple and fast web application. It is built with Next.js, Tailwind CSS, and Prisma.
+</p>
 
 <p align="center">
     <img src="https://github.com/jarvis2f/vortex/actions/workflows/docker-publish.yml/badge.svg" alt="Vortex Docker" />
     <img src="https://img.shields.io/github/package-json/v/jarvis2f/vortex" alt="Vortex Version" />
     <img src="https://codecov.io/gh/jarvis2f/vortex/graph/badge.svg?token=62ZZ6VYJUG" alt="Vortex codecov" />
     <img src="https://img.shields.io/github/license/jarvis2f/vortex" alt="Vortex License" />
+</p>
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/jarvis2f/vortex/main/public/dashboard.png" alt="Vortex Dashboard" width="70%"/>
 </p>
 
 # Installation
@@ -75,3 +81,6 @@ Vortex is open source software [licensed as MIT](LICENSE).
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Prisma](https://www.prisma.io/)
 - [Umami](https://umami.is/)
+
+> [!TIP]
+> [Vortex Agent](https://github.com/jarvis2f/vortex-agent)
