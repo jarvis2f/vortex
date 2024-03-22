@@ -20,6 +20,9 @@ Vortex
 <p align="center">
     <img src="https://raw.githubusercontent.com/jarvis2f/vortex/main/public/dashboard.png" alt="Vortex Dashboard" width="70%"/>
 </p>
+<p align="center">
+    <img src="https://raw.githubusercontent.com/jarvis2f/vortex/main/public/server.png" alt="Vortex Umami" width="70%"/>
+</p>
 
 # Installation
 
