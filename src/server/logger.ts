@@ -3,7 +3,11 @@ import pino, { type Logger } from "pino";
 import "pino-abstract-transport";
 
 const targets = [];
-
+targets.push({
+  target: path.join(process.cwd(), "./src/lib/pino-prisma.mjs"),
+  options: {},
+  level: "trace",
+});
 if (process.env.NODE_ENV === "production") {
   // targets.push({
   //   target: 'pino/file',
@@ -12,11 +16,6 @@ if (process.env.NODE_ENV === "production") {
   //   },
   //   level: 'trace',
   // })
-  targets.push({
-    target: path.join(process.cwd(), "./src/lib/pino-prisma.mjs"),
-    options: {},
-    level: "trace",
-  });
 } else {
   targets.push({
     target: "pino-pretty",
@@ -36,6 +35,9 @@ const logger: Logger = pino({
 });
 
 process.on("uncaughtException", (err) => {
+  if (err.message === "the worker has exited") {
+    return;
+  }
   console.error(err);
   if (logger) logger.fatal(err, "uncaught exception detected");
 });
