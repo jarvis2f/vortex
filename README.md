@@ -41,7 +41,7 @@ docker-compose up
 1. Copy the [docker-compose.umami.yml](docker%2Fdocker-compose.umami.yml) file to the root of your project.
 
 ```bash
-docker-compose up -f docker-compose.umami.yml
+docker-compose -f docker-compose.umami.yml up
 ```
 
 ## Vercel
