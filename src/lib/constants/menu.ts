@@ -17,55 +17,55 @@ import { env } from "~/env";
 
 const menus: Menu[] = [
   {
-    title: "控制台",
+    title: "dashboard",
     href: "/dashboard",
     icon: LayoutDashboardIcon,
   },
   {
-    title: "转发",
+    title: "forward",
     href: "/forward",
     icon: OrbitIcon,
   },
   {
-    title: "服务器",
+    title: "agent",
     href: "/agent",
     icon: ServerIcon,
   },
   {
-    title: "组网",
+    title: "network",
     href: "/network",
     icon: NetworkIcon,
   },
   {
-    title: "工单",
+    title: "ticket",
     href: "/ticket",
     icon: TicketIcon,
   },
   {
-    title: "管理",
+    title: "manage",
     children: [
       {
-        title: "用户",
+        title: "users",
         href: "/admin/users",
         icon: UserIcon,
       },
       {
-        title: "统计",
+        title: "statistics",
         href: env.NEXT_PUBLIC_UMAMI_URL ?? "/not-found",
         icon: LineChartIcon,
       },
     ],
   },
   {
-    title: "系统",
+    title: "system",
     children: [
       {
-        title: "日志",
+        title: "log",
         href: "/admin/log",
         icon: LibraryBigIcon,
       },
       {
-        title: "配置",
+        title: "config",
         href: "/admin/config",
         icon: Settings2Icon,
       },

@@ -1,10 +1,13 @@
 "use client";
 import type { ConfigSchema } from "~/lib/types";
 import dynamic from "next/dynamic";
-import { TrafficPriceSkeleton } from "~/app/(manage)/admin/config/_components/traffic-price-config";
+import { TrafficPriceSkeleton } from "~/app/[local]/(manage)/admin/config/_components/traffic-price-config";
 
 const TrafficPriceConfig = dynamic(
-  () => import("~/app/(manage)/admin/config/_components/traffic-price-config"),
+  () =>
+    import(
+      "~/app/[local]/(manage)/admin/config/_components/traffic-price-config"
+    ),
   {
     ssr: false,
     loading: TrafficPriceSkeleton,
