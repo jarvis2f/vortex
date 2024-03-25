@@ -1,0 +1,719 @@
+{
+  "admin-config": {},
+  "admin-config-[classify]": {},
+  "admin-config-code-input-dialog": {
+    "edit": "编辑",
+    "preview": "预览"
+  },
+  "admin-config-config-field": {
+    "save": "保存"
+  },
+  "admin-config-config-list": {},
+  "admin-config-cron-input": {
+    "after": "之后",
+    "any_value": "任何值",
+    "day": "日",
+    "hide": "隐藏",
+    "hour": "时",
+    "minute": "分",
+    "month": "月",
+    "more": "更多",
+    "next": "下次",
+    "possible_values": "可取的值",
+    "step": "步长",
+    "value_in_range": "范围内的值",
+    "value_separator": "取值分隔符",
+    "week": "周"
+  },
+  "admin-config-layout": {
+    "general": "通用",
+    "general_config_etc": "通用配置等",
+    "including_log_config": "包括日志配置",
+    "log_config": "日志配置",
+    "node_related_config": "节点相关配置",
+    "payment_records": "支付记录",
+    "recharge_code": "充值码",
+    "system_config": "系统配置",
+    "website_system_config": "网站系统配置",
+    "withdrawal_records": "提现记录"
+  },
+  "admin-config-payment-info": {},
+  "admin-config-payment": {},
+  "admin-config-payment-table": {
+    "info": "信息",
+    "received_amount": "到账金额",
+    "recharge_amount": "充值金额",
+    "reset": "重置",
+    "status": "状态",
+    "user": "用户"
+  },
+  "admin-config-recharge-code": {
+    "balance": "余额",
+    "batch_generate_export_recharge_code": "可以批量生成导出充值码",
+    "manage_recharge_code": "管理充值码",
+    "personal_center": "个人中心",
+    "recharge_code": "充值码",
+    "recharge_code_in": "充值码在",
+    "recharge_use": "充值使用"
+  },
+  "admin-config-recharge-code-table": {
+    "add": "添加",
+    "amount": "金额",
+    "cancel": "取消",
+    "confirm_delete_recharge_code": "你确认要删除这条充值码吗",
+    "continue": "继续",
+    "create_recharge_code": "创建充值码",
+    "export_after_creation": "创建后导出",
+    "pieces": "个",
+    "quantity": "数量",
+    "recharge_code": "充值码",
+    "reset": "重置",
+    "save": "保存",
+    "total": "共",
+    "usage_status": "使用状态",
+    "used": "已使用",
+    "used_by": "使用用户",
+    "user": "用户",
+    "yuan": "元"
+  },
+  "admin-config-traffic-price-config": {
+    "price": "价格",
+    "unit": "单位"
+  },
+  "admin-config-withdraw": {},
+  "admin-config-withdrawal-table": {
+    "address": "地址",
+    "operation_successful": "操作成功",
+    "reset": "重置",
+    "status": "状态",
+    "user": "用户",
+    "user_wallet_balance_updated": "已自动更新用户钱包收益余额",
+    "withdrawal_amount": "提现金额",
+    "withdrawal_status_updated": "提现状态已更新"
+  },
+  "admin-log": {
+    "logs": "日志"
+  },
+  "admin-log-log": {
+    "copied_to_clipboard": "已复制到剪贴板"
+  },
+  "admin-log-log-delete": {
+    "cancel": "取消",
+    "confirm_delete_all_logs": "你确认要删除所有日志吗",
+    "continue": "继续"
+  },
+  "admin-log-log-glance": {},
+  "admin-log-log-search-keyword": {
+    "advanced_search": "高级搜索",
+    "array_index_is": "数组下标为",
+    "array_index_with": "数组下标以",
+    "default_fuzzy_search": "默认模糊查询",
+    "field": "字段",
+    "for_example": "如",
+    "format": "格式",
+    "of": "的",
+    "query": "查询",
+    "search": "搜索",
+    "separated": "分割",
+    "support": "支持",
+    "syntax": "语法",
+    "with": "以",
+    "wrapped": "包裹"
+  },
+  "admin-log-log-toolbar": {
+    "add_log_display_field_config": "增加日志展示字段的配置",
+    "new_logs_available": "有新日志",
+    "reset": "重置"
+  },
+  "admin-log-logs": {},
+  "admin-users": {
+    "users": "用户"
+  },
+  "admin-users-user-role-setting": {
+    "modify_role": "修改角色",
+    "relogin_required_after_modification": "修改之后需重新登录"
+  },
+  "admin-users-user-status": {
+    "activate_user": "激活此用户",
+    "ban_user": "封禁此用户"
+  },
+  "admin-users-user-table": {
+    "email": "邮箱",
+    "filter_name": "过滤名称",
+    "info": "信息",
+    "operation": "操作",
+    "reset": "重置",
+    "role": "角色",
+    "status": "状态"
+  },
+  "agent": {},
+  "agent-[agentId]-config-base": {
+    "basic_info": "基础信息",
+    "server": "服务器"
+  },
+  "agent-[agentId]-config-other": {
+    "other_settings": "其它设置",
+    "server": "服务器"
+  },
+  "agent-[agentId]-forward": {
+    "forward": "转发",
+    "server": "服务器"
+  },
+  "agent-[agentId]-install": {
+    "install": "安装",
+    "server": "服务器"
+  },
+  "agent-[agentId]-layout": {
+    "server": "服务器"
+  },
+  "agent-[agentId]-loading": {},
+  "agent-[agentId]-log": {
+    "logs": "日志",
+    "server": "服务器"
+  },
+  "agent-[agentId]-status": {
+    "address": "地址",
+    "bandwidth": "带宽",
+    "info": "信息",
+    "last_response": "上次响应",
+    "memory": "内存",
+    "node_version": "节点版本",
+    "price": "价格",
+    "server": "服务器",
+    "status": "状态",
+    "system": "系统",
+    "traffic": "流量",
+    "unknown": "未知"
+  },
+  "agent-agent-command": {
+    "enter_command": "请输入命令",
+    "execute": "执行",
+    "execute_command": "执行命令",
+    "execution_result": "执行结果",
+    "failed": "失败",
+    "success": "成功",
+    "type": "类型"
+  },
+  "agent-agent-config": {
+    "server_basic_info_settings": "服务器基本信息设置"
+  },
+  "agent-agent-delete": {
+    "all_forwarding_stopped": "会停止所有的转发",
+    "all_related_data_deleted": "并且删除所有相关的数据",
+    "cancel": "取消",
+    "confirm_delete_server": "你确认要删除这台服务器吗",
+    "continue": "继续",
+    "operation_irreversible": "这个操作不可逆转",
+    "server_deleted_from_system": "将会从系统上将这台服务器删除"
+  },
+  "agent-agent-form": {
+    "description": "描述",
+    "name": "名称",
+    "save": "保存",
+    "server_description": "服务器描述",
+    "server_name": "服务器名称",
+    "share": "共享",
+    "share_with_other_users": "是否共享给其他用户",
+    "used_to_distinguish_servers": "用于区分不同服务器"
+  },
+  "agent-agent-install": {
+    "after_installation": "安装完成后",
+    "click": "可以点击",
+    "copy_command_below_to_install": "复制下方命令进行安装",
+    "copy_command_below_to_uninstall": "复制下方命令进行卸载",
+    "execute_in_installation_directory": "请在安装目录下执行",
+    "if_installation_command_leaked": "如果安装命令泄露",
+    "install": "安装",
+    "server_status_will_change": "服务器状态将会修改",
+    "successful_log_message": "成功将会看到一条",
+    "uninstall": "卸载",
+    "uninstall_deletes_all_configs_and_files": "卸载后会删除所有配置和安装目录下的文件",
+    "update": "更新",
+    "version": "版本",
+    "view_installation_progress_on_logs_page": "可以通过日志页面查看安装情况"
+  },
+  "agent-agent-list": {},
+  "agent-agent-list-aside": {
+    "add_server": "添加服务器",
+    "offline_servers": "掉线服务器",
+    "online_servers": "在线服务器",
+    "search_server": "搜索服务器",
+    "unknown_servers": "未知服务器",
+    "add_tips": "点击保存后查看侧边服务器栏。添加中转服务器，保存后会给你一个安装命令，复制到服务器上执行即可"
+  },
+  "agent-agent-menu": {
+    "basic_info": "基础信息",
+    "config": "配置",
+    "forward": "转发",
+    "install": "安装",
+    "log_config_etc": "日志等配置",
+    "logs": "日志",
+    "other_settings": "其它设置",
+    "port": "端口",
+    "price": "价格",
+    "remarks_etc": "备注等",
+    "server_name": "服务器名称",
+    "status": "状态"
+  },
+  "agent-agent-price": {},
+  "agent-agent-resizable-layout": {},
+  "agent-bandwidth-usage": {
+    "download": "下载",
+    "upload": "上传"
+  },
+  "agent-cpu-usage": {},
+  "agent-mem-usage": {},
+  "agent-traffic-usage": {
+    "download": "下载",
+    "upload": "上传"
+  },
+  "auth-error": {
+    "access_denied": "拒绝访问",
+    "an_error_occurred": "发生错误",
+    "back_to_signin": "返回登录",
+    "check_details_provided_are_correct": "检查您提供的详细信息是否正确",
+    "check_information_provided_is_correct": "请检查您提供的信息是否正确",
+    "check_server_logs_for_more_info": "检查服务器日志以获取更多信息",
+    "email_could_not_be_sent": "电子邮件无法发送",
+    "it_may_have_been_used_or_expired": "它可能已经被使用过或者可能已经过期",
+    "not_authorized_to_signin": "您没有登录权限",
+    "please_signin_to_access_this_page": "请登录才能访问此页面",
+    "server_error": "服务器错误",
+    "server_misconfigured": "服务器配置有问题",
+    "signin_link_no_longer_valid": "登录链接不再有效",
+    "oauth_account_not_linked": "要确认您的身份，请使用您最初使用的同一帐户登录",
+    "try_signing_in_with_different_account": "尝试使用其他帐户登录",
+    "unable_to_signin": "无法登录",
+    "user_disabled": "用户已禁用",
+    "your_account_has_been_disabled": "您的帐户已被禁用"
+  },
+  "auth-layout": {},
+  "auth-new": {
+    "create_password": "创建密码",
+    "signin_directly": "直接登录",
+    "skip_password_tips": "不设置密码，直接登录",
+    "create_password_tips": "为您的账户创建一个密码，以便您可以使用电子邮件地址和密码登录"
+  },
+  "auth-signin": {
+    "and": "和",
+    "by_continuing_you_agree_to_our": "继续即表示您同意我们的",
+    "continue": "继续",
+    "create_an_account": "创建一个账号",
+    "enter_email_signin_or_register": "输入你的邮箱来登录或者注册一个账号",
+    "or_use": "或者使用",
+    "password_signin": "密码登录",
+    "privacy_policy": "隐私政策",
+    "registration_closed": "已关闭注册",
+    "signin": "登录",
+    "terms_of_service": "服务条款",
+    "your_email_address": "你的邮箱地址"
+  },
+  "auth-signin-credential": {
+    "and": "和",
+    "back_to_signup": "返回注册",
+    "by_continuing_you_agree_to_our": "继续即表示您同意我们的",
+    "enter_valid_email_address": "请输入正确的邮箱地址",
+    "enter_your_password": "请输入你的密码",
+    "password_signin": "密码登录",
+    "privacy_policy": "隐私政策",
+    "signin": "登录",
+    "terms_of_service": "服务条款",
+    "your_email_address": "你的邮箱地址",
+    "your_password": "你的密码"
+  },
+  "auth-signout": {
+    "confirm": "确认",
+    "confirm_sign_out": "确认退出登录"
+  },
+  "auth-verify": {},
+  "dashboard": {
+    "announcement": "公告",
+    "balance": "余额",
+    "earnings": "收益",
+    "no_announcement": "暂无公告",
+    "recent_days_traffic_usage": "最近7天的流量使用情况",
+    "system_running_normally": "系统运行正常",
+    "system_status": "系统状态",
+    "traffic_usage": "流量使用",
+    "yesterday_consumption": "昨日消费",
+    "yesterday_earnings": "昨日收益"
+  },
+  "dashboard-system-status": {
+    "download": "下载",
+    "memory": "内存",
+    "network": "网络",
+    "upload": "上传"
+  },
+  "dashboard-traffic-usage": {
+    "used_traffic": "使用流量"
+  },
+  "forward": {
+    "forward": "Forward"
+  },
+  "forward-forward-delete": {
+    "all_related_data_deleted": "并且删除所有相关的数据",
+    "cancel": "取消",
+    "confirm_delete_forward_config": "你确认要删除这个转发配置吗",
+    "continue": "继续",
+    "delete_entire_network_on_networking_page": "你应该去组网页面删除整个组网",
+    "forwarding_stopped": "将会停止转发",
+    "if_forward_created_through_networking": "如果这个转发是通过组网创建的",
+    "operation_irreversible": "这个操作不可逆转"
+  },
+  "forward-forward-modify-remark": {
+    "cancel": "取消",
+    "enter_remark_here": "在这里输入你的备注",
+    "save": "保存",
+    "update_forward_remark": "更新转发备注"
+  },
+  "forward-forward-new": {
+    "can_be": "可以是",
+    "enter_forwarding_info": "请填写转发信息",
+    "forwarding_method": "转发方式",
+    "forwarding_target": "转发目标",
+    "limit_range": "限制范围",
+    "more_config": "更多配置",
+    "new_forward": "新增转发",
+    "no_available_servers": "暂无可用服务器",
+    "or_domain_name": "或者域名",
+    "relay_server": "中转服务器",
+    "remark": "备注",
+    "reset": "重置",
+    "save": "保存",
+    "select_forwarding_method": "请选择一种转发方式进行转发",
+    "select_relay_server": "请选择中转服务器",
+    "server": "服务器",
+    "server_port": "服务器端口",
+    "target_port": "目标端口"
+  },
+  "forward-forward-new-gost": {
+    "channel": "通道",
+    "enable_after_selection": "选择后开启",
+    "multiplexing": "多路复用",
+    "protocol": "协议",
+    "relay_data_channel": "中转数据通道",
+    "relay_data_protocol": "中转数据协议"
+  },
+  "forward-forward-reset-traffic": {
+    "cancel": "取消",
+    "confirm_reset_forward_traffic": "你确认要重置这个转发配置的流量吗",
+    "continue": "继续",
+    "operation_irreversible": "这个操作不可逆转",
+    "used_traffic_reset": "将会重置已使用的流量"
+  },
+  "forward-forward-table": {
+    "add": "添加",
+    "delete": "删除",
+    "modify_remark": "修改备注",
+    "remark": "备注",
+    "reset": "重置",
+    "reset_traffic": "重置流量",
+    "server": "服务器",
+    "status": "状态",
+    "target": "目标",
+    "used_traffic": "已用流量",
+    "user": "用户"
+  },
+  "index": {
+    "Dashboard": "控制台",
+    "Sign In": "登录",
+    "Welcome": "欢迎"
+  },
+  "global_theme-provider": {},
+  "global_monthly-traffic-usage": {
+    "january": "一月",
+    "february": "二月",
+    "march": "三月",
+    "april": "四月",
+    "may": "五月",
+    "june": "六月",
+    "july": "七月",
+    "august": "八月",
+    "september": "九月",
+    "october": "十月",
+    "november": "十一月",
+    "december": "十二月",
+    "upload": "上传",
+    "download": "下载"
+  },
+  "global_user-column": {},
+  "global_channel-selector": {
+    "select-a-channel": "选择一个通道",
+    "search": "搜索",
+    "no-data": "无数据"
+  },
+  "global_search-empty-state": {},
+  "global_update-password-dialog": {
+    "change-password": "更改密码",
+    "set-password": "设置密码",
+    "update-password": "更新密码"
+  },
+  "global_resizable-layout": {},
+  "global_traffic": {},
+  "global_code-input": {
+    "format": "格式化"
+  },
+  "global_update-password-form": {
+    "password-must-be-at-least": "密码必须至少为",
+    "characters-long": "个字符",
+    "and-contain-at-least": "并且至少包含",
+    "letters-and": "个字母和",
+    "numbers": "个数字",
+    "passwords-do-not-match": "密码不匹配",
+    "please-enter-your-old-password": "请输入原密码",
+    "old-password": "原密码",
+    "password": "密码",
+    "confirm-password": "确认密码",
+    "save": "保存"
+  },
+  "global_locale-switcher": {
+    "label": "选择语言",
+    "locale": "{locale, select, zh {🇨🇳 简体中文} en {🇺🇸 English} other {Unknown}}"
+  },
+  "global_faceted-filter": {},
+  "global_logo": {},
+  "global_id": {
+    "created-at": "创建于"
+  },
+  "global_menu": {
+    "personal-center": "个人中心",
+    "balance": "余额",
+    "logout": "退出",
+    "dashboard": "控制台",
+    "forward": "转发",
+    "agent": "服务器",
+    "network": "组网",
+    "ticket": "工单",
+    "manage": "管理",
+    "users": "用户",
+    "statistics": "统计",
+    "system": "系统",
+    "log": "日志",
+    "config": "配置"
+  },
+  "global_table-faceted-filter": {},
+  "global_loading": {},
+  "global_table": {
+    "no-data": "无数据"
+  },
+  "global_sidebar-nav": {},
+  "global_welcome": {},
+  "global_table-view-options": {},
+  "network": {
+    "networking": "组网"
+  },
+  "network-[networkId]": {
+    "networking": "组网"
+  },
+  "network-agent-edge": {
+    "random": "随机"
+  },
+  "network-agent-edge-forward-settings": {
+    "channel": "通道",
+    "default_random": "默认随机",
+    "enter_port_to_forward": "填写你需要转发的端口",
+    "forwarding_method": "转发方式",
+    "forwarding_method_required": "必须选择转发方式",
+    "forwarding_port": "转发端口",
+    "forwarding_port_required": "必须填写转发端口",
+    "listening_port": "监听端口",
+    "listening_port_greater_than": "监听端口必须大于",
+    "listening_port_less_than": "监听端口必须小于",
+    "port_range": "端口范围",
+    "relay_settings": "中转设置",
+    "target_port_greater_than": "目标端口必须大于",
+    "target_port_less_than": "目标端口必须小于"
+  },
+  "network-agent-edge-test": {
+    "avg_delay": "平均延迟",
+    "diagnose_relayed_network_connection": "诊断中转的网络连接",
+    "execution_result": "执行结果",
+    "failed": "失败",
+    "max_delay": "最大延迟",
+    "min_delay": "最小延迟",
+    "network_diagnostics": "网络诊断",
+    "packet_loss_rate": "丢包率",
+    "start": "开始",
+    "test": "测试",
+    "test_method": "测试方式"
+  },
+  "network-agent-edge-toolbar": {},
+  "network-agent-node": {},
+  "network-external-node": {},
+  "network-external-node-new": {
+    "address": "地址",
+    "address_or_domain_name": "地址或域名",
+    "create": "创建",
+    "create_external_node": "创建外部节点",
+    "enter_external_node": "请输入外部节点的",
+    "enter_external_node_name": "请输入外部节点的名称",
+    "enter_node_address": "请输入节点地址",
+    "enter_node_name": "请输入节点名称",
+    "enter_valid_address": "请输入正确的地址",
+    "name": "名称",
+    "support": "支持",
+    "used_to_identify_node": "用于标识该节点"
+  },
+  "network-network-command": {
+    "add_external_node": "添加外部节点",
+    "added": "已添加",
+    "operation": "操作",
+    "search_add_server": "搜索添加服务器"
+  },
+  "network-network-delete": {
+    "all_forwarding_stopped": "会停止所有的转发",
+    "all_related_data_deleted": "并且删除所有相关的数据",
+    "cancel": "取消",
+    "confirm_delete_network_config": "你确认要删除这条网络配置吗",
+    "continue": "继续",
+    "network_config_deleted_from_system": "将会从系统上将这条网络配置删除",
+    "operation_irreversible": "这个操作不可逆转"
+  },
+  "network-network-edit": {
+    "apply_to_network": "是否应用至网络",
+    "cancel": "取消",
+    "network_name": "组网名称",
+    "please_operate_with_caution": "请谨慎操作",
+    "save": "保存",
+    "save_as_new_network_config": "保存为新的组网配置",
+    "this_will_overwrite_current_network_config": "选择此选项将会覆盖当前网络配置",
+    "update_network_config": "更新组网配置"
+  },
+  "network-network-flow": {
+    "new_network": "新的组网"
+  },
+  "network-network-selector": {},
+  "network-network-table": {
+    "copy_entrance_address": "复制入口地址",
+    "create_new_network": "创建新的组网",
+    "creator": "创建者",
+    "filter_name": "过滤名称",
+    "name": "名称",
+    "node_info": "节点信息",
+    "nodes": "个节点",
+    "reset": "重置",
+    "traffic": "流量"
+  },
+  "ticket": {
+    "tickets": "工单"
+  },
+  "ticket-[ticketId]": {
+    "created_at": "创建时间",
+    "ticket": "工单"
+  },
+  "ticket-markdown-input": {
+    "edit": "编辑",
+    "preview": "预览"
+  },
+  "ticket-new": {
+    "create_ticket": "创建工单",
+    "ticket": "工单"
+  },
+  "ticket-new-ticket-form": {
+    "briefly_describe_problem": "请简要描述您的问题",
+    "characters": "字符",
+    "content": "内容",
+    "format": "格式",
+    "max_length": "最大长度",
+    "save": "保存",
+    "support": "支持",
+    "title": "标题"
+  },
+  "ticket-ticket-close": {
+    "cancel": "取消",
+    "close": "关闭",
+    "confirm_close_ticket": "你确认要关闭这个工单吗",
+    "continue": "继续"
+  },
+  "ticket-ticket-reply": {
+    "reply": "回复"
+  },
+  "ticket-ticket-status-badge": {},
+  "ticket-ticket-table": {
+    "create_new_ticket": "创建新的工单",
+    "creator": "创建者",
+    "reset": "重置",
+    "status": "状态",
+    "title": "标题"
+  },
+  "user-[userId]": {
+    "profile": "个人资料",
+    "relogin_required_to_take_effect": "需要重新登录后生效",
+    "set_name_avatar": "设置你的名称和头像"
+  },
+  "user-[userId]-account": {
+    "account": "账号",
+    "email": "邮箱",
+    "password": "密码",
+    "password_not_set": "未设置密码",
+    "view_update_account_info": "查看和更新你的账号信息"
+  },
+  "user-[userId]-balance": {
+    "available_balance": "可消费余额",
+    "earnings_amount": "收益金额"
+  },
+  "user-[userId]-balance-log": {
+    "balance": "余额",
+    "balance_history": "余额历史",
+    "change_amount": "变动金额",
+    "other_info": "其它信息",
+    "time": "时间"
+  },
+  "user-[userId]-layout": {
+    "account": "账户",
+    "balance": "余额",
+    "manage_account_settings_email_preferences": "管理您的帐户设置并设置电子邮件首选项",
+    "personal_center": "个人中心",
+    "profile": "个人资料",
+    "user_center": "用户中心"
+  },
+  "user-[userId]-profile-form": {
+    "avatar": "头像",
+    "avatar_link": "头像链接",
+    "name": "名称",
+    "name_displayed_in_profile": "显示在您的个人资料中的名称",
+    "save": "保存"
+  },
+  "user-[userId]-recharge-balance": {
+    "balance_recharge": "余额充值",
+    "enter_recharge_code": "请输入充值码",
+    "recharge": "充值",
+    "recharge_code": "充值码"
+  },
+  "user-[userId]-recharge-depay": {
+    "after_clicking_confirm": "点击确认后",
+    "and": "和",
+    "confirm": "确认",
+    "enter_crypto_wallet_select_payment_method": "将会进入加密钱包选择支付方式",
+    "invalid_amount": "无效的金额",
+    "minimum_recharge_amount": "充值金额最低",
+    "notes": "注意事项",
+    "recharge": "充值",
+    "recharge_amount": "充值金额",
+    "recharge_failed": "充值失败",
+    "recharge_handling_fee": "充值需要收取",
+    "recharge_successful": "充值成功",
+    "support": "支持",
+    "supported_networks": "支持的网络"
+  },
+  "user-[userId]-update-balance": {
+    "add_or_subtract_balance": "为用户添加或减少余额",
+    "amount": "金额",
+    "reduce_balance": "减少余额",
+    "remark": "备注",
+    "save": "保存",
+    "update_balance": "更新余额"
+  },
+  "user-[userId]-withdrawal-balance": {
+    "amount": "金额",
+    "current_earnings_balance": "当前收益余额",
+    "deduct_handling_fee": "需要扣除部分手续费",
+    "minimum_withdrawal_amount": "最低提现金额为",
+    "please_provide": "请提供",
+    "receiving_address": "收款地址",
+    "request_withdrawal": "申请提现",
+    "request_withdrawal_to_specified_address": "申请提现到指定的地址",
+    "subject_to_actual_received_amount": "以实际到账金额为准",
+    "withdrawal": "提现"
+  }
+}

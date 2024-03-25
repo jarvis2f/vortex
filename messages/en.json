@@ -1,0 +1,719 @@
+{
+  "admin-config": {},
+  "admin-config-[classify]": {},
+  "admin-config-code-input-dialog": {
+    "edit": "Edit",
+    "preview": "Preview"
+  },
+  "admin-config-config-field": {
+    "save": "Save"
+  },
+  "admin-config-config-list": {},
+  "admin-config-cron-input": {
+    "after": "After",
+    "any_value": "Any Value",
+    "day": "Day",
+    "hide": "Hide",
+    "hour": "Hour",
+    "minute": "Minute",
+    "month": "Month",
+    "more": "More",
+    "next": "Next",
+    "possible_values": "Possible Values",
+    "step": "Step",
+    "value_in_range": "Value in Range",
+    "value_separator": "Value Separator",
+    "week": "Week"
+  },
+  "admin-config-layout": {
+    "general": "General",
+    "general_config_etc": "general config, etc.",
+    "including_log_config": "Including log config",
+    "log_config": "Log Config",
+    "node_related_config": "Node Related Config",
+    "payment_records": "Payment Records",
+    "recharge_code": "Recharge Code",
+    "system_config": "System Config",
+    "website_system_config": "Website System Config",
+    "withdrawal_records": "Withdrawal Records"
+  },
+  "admin-config-payment": {},
+  "admin-config-payment-info": {},
+  "admin-config-payment-table": {
+    "info": "Info",
+    "received_amount": "Received Amount",
+    "recharge_amount": "Recharge Amount",
+    "reset": "Reset",
+    "status": "Status",
+    "user": "User"
+  },
+  "admin-config-recharge-code": {
+    "balance": "Balance",
+    "batch_generate_export_recharge_code": "Batch generate and export recharge code",
+    "manage_recharge_code": "Manage Recharge Code",
+    "personal_center": "Personal Center",
+    "recharge_code": "Recharge Code",
+    "recharge_code_in": "Recharge code in",
+    "recharge_use": "Recharge Use"
+  },
+  "admin-config-recharge-code-table": {
+    "add": "Add",
+    "amount": "Amount",
+    "cancel": "Cancel",
+    "confirm_delete_recharge_code": "Are you sure you want to delete this recharge code?",
+    "continue": "Continue",
+    "create_recharge_code": "Create Recharge Code",
+    "export_after_creation": "Export after creation",
+    "pieces": "pieces",
+    "quantity": "Quantity",
+    "recharge_code": "Recharge Code",
+    "reset": "Reset",
+    "save": "Save",
+    "total": "Total",
+    "usage_status": "Usage Status",
+    "used": "Used",
+    "used_by": "Used By",
+    "user": "User",
+    "yuan": "yuan"
+  },
+  "admin-config-traffic-price-config": {
+    "price": "Price",
+    "unit": "Unit"
+  },
+  "admin-config-withdraw": {},
+  "admin-config-withdrawal-table": {
+    "address": "Address",
+    "operation_successful": "Operation Successful",
+    "reset": "Reset",
+    "status": "Status",
+    "user": "User",
+    "user_wallet_balance_updated": "User wallet earnings balance has been automatically updated",
+    "withdrawal_amount": "Withdrawal Amount",
+    "withdrawal_status_updated": "Withdrawal status has been updated"
+  },
+  "admin-log": {
+    "logs": "Logs"
+  },
+  "admin-log-log": {
+    "copied_to_clipboard": "Copied to clipboard"
+  },
+  "admin-log-log-delete": {
+    "cancel": "Cancel",
+    "confirm_delete_all_logs": "Are you sure you want to delete all logs?",
+    "continue": "Continue"
+  },
+  "admin-log-log-glance": {},
+  "admin-log-log-search-keyword": {
+    "advanced_search": "Advanced Search",
+    "array_index_is": "Array index is",
+    "array_index_with": "Array index with",
+    "default_fuzzy_search": "Default fuzzy search",
+    "field": "Field",
+    "for_example": "For example",
+    "format": "Format",
+    "of": "of",
+    "query": "Query",
+    "search": "Search",
+    "separated": "separated",
+    "support": "Support",
+    "syntax": "Syntax",
+    "with": "with",
+    "wrapped": "wrapped"
+  },
+  "admin-log-log-toolbar": {
+    "add_log_display_field_config": "Add log display field configuration",
+    "new_logs_available": "New logs available",
+    "reset": "Reset"
+  },
+  "admin-log-logs": {},
+  "admin-users": {
+    "users": "Users"
+  },
+  "admin-users-user-role-setting": {
+    "modify_role": "Modify Role",
+    "relogin_required_after_modification": "Relogin required after modification"
+  },
+  "admin-users-user-status": {
+    "activate_user": "Activate this user",
+    "ban_user": "Ban this user"
+  },
+  "admin-users-user-table": {
+    "email": "Email",
+    "filter_name": "Filter Name",
+    "info": "Info",
+    "operation": "Operation",
+    "reset": "Reset",
+    "role": "Role",
+    "status": "Status"
+  },
+  "agent": {},
+  "agent-[agentId]-config-base": {
+    "basic_info": "Basic Info",
+    "server": "Server"
+  },
+  "agent-[agentId]-config-other": {
+    "other_settings": "Other Settings",
+    "server": "Server"
+  },
+  "agent-[agentId]-forward": {
+    "forward": "Forward",
+    "server": "Server"
+  },
+  "agent-[agentId]-install": {
+    "install": "Install",
+    "server": "Server"
+  },
+  "agent-[agentId]-layout": {
+    "server": "Server"
+  },
+  "agent-[agentId]-loading": {},
+  "agent-[agentId]-log": {
+    "logs": "Logs",
+    "server": "Server"
+  },
+  "agent-[agentId]-status": {
+    "address": "Address",
+    "bandwidth": "Bandwidth",
+    "info": "Info",
+    "last_response": "Last Response",
+    "memory": "Memory",
+    "node_version": "Node Version",
+    "price": "Price",
+    "server": "Server",
+    "status": "Status",
+    "system": "System",
+    "traffic": "Traffic",
+    "unknown": "Unknown"
+  },
+  "agent-agent-command": {
+    "enter_command": "Enter command",
+    "execute": "Execute",
+    "execute_command": "Execute Command",
+    "execution_result": "Execution Result",
+    "failed": "Failed",
+    "success": "Success",
+    "type": "Type"
+  },
+  "agent-agent-config": {
+    "server_basic_info_settings": "Server Basic Info Settings"
+  },
+  "agent-agent-delete": {
+    "all_forwarding_stopped": "All forwarding will be stopped.",
+    "all_related_data_deleted": "And all related data will be deleted.",
+    "cancel": "Cancel",
+    "confirm_delete_server": "Are you sure you want to delete this server?",
+    "continue": "Continue",
+    "operation_irreversible": "This action cannot be undone.",
+    "server_deleted_from_system": "This server will be deleted from the system."
+  },
+  "agent-agent-form": {
+    "description": "Description",
+    "name": "Name",
+    "save": "Save",
+    "server_description": "Server Description",
+    "server_name": "Server Name",
+    "share": "Share",
+    "share_with_other_users": "Share with other users",
+    "used_to_distinguish_servers": "Used to distinguish different servers"
+  },
+  "agent-agent-install": {
+    "after_installation": "After installation",
+    "click": "click",
+    "copy_command_below_to_install": "Copy the command below to install",
+    "copy_command_below_to_uninstall": "Copy the command below to uninstall",
+    "execute_in_installation_directory": "Please execute in the installation directory",
+    "if_installation_command_leaked": "If the installation command is leaked",
+    "install": "Install",
+    "server_status_will_change": "the server status will change",
+    "successful_log_message": "You will see a successful log message",
+    "uninstall": "Uninstall",
+    "uninstall_deletes_all_configs_and_files": "Uninstalling will delete all configurations and files under the installation directory",
+    "update": "Update",
+    "version": "Version",
+    "view_installation_progress_on_logs_page": "You can view the installation progress on the logs page"
+  },
+  "agent-agent-list": {},
+  "agent-agent-list-aside": {
+    "add_server": "Add Server",
+    "offline_servers": "Offline Servers",
+    "online_servers": "Online Servers",
+    "search_server": "Search Server",
+    "unknown_servers": "Unknown Servers",
+    "add_tips": "Click save to view the sidebar server list.Add Relay Server, Save to receive an installation command, Copy and execute it on the server"
+  },
+  "agent-agent-menu": {
+    "basic_info": "Basic Info",
+    "config": "Config",
+    "forward": "Forward",
+    "install": "Install",
+    "log_config_etc": "Log config, etc.",
+    "logs": "Logs",
+    "other_settings": "Other Settings",
+    "port": "Port",
+    "price": "Price",
+    "remarks_etc": "Remarks, etc.",
+    "server_name": "Server Name",
+    "status": "Status"
+  },
+  "agent-agent-price": {},
+  "agent-agent-resizable-layout": {},
+  "agent-bandwidth-usage": {
+    "download": "Download",
+    "upload": "Upload"
+  },
+  "agent-cpu-usage": {},
+  "agent-mem-usage": {},
+  "agent-traffic-usage": {
+    "download": "Download",
+    "upload": "Upload"
+  },
+  "auth-error": {
+    "access_denied": "Access Denied",
+    "an_error_occurred": "Whoops! Something went wrong.",
+    "back_to_signin": "Back to Sign In",
+    "check_details_provided_are_correct": "Check that the details you provided are correct.",
+    "check_information_provided_is_correct": "Please check that the information you provided is correct.",
+    "check_server_logs_for_more_info": "Check the server logs for more information.",
+    "email_could_not_be_sent": "The email could not be sent.",
+    "it_may_have_been_used_or_expired": "It may have been used already or it may have expired.",
+    "not_authorized_to_signin": "You are not authorized to sign in.",
+    "please_signin_to_access_this_page": "Please sign in to access this page.",
+    "server_error": "Server Error",
+    "server_misconfigured": "There's a problem with the server configuration.",
+    "signin_link_no_longer_valid": "The sign-in link is no longer valid.",
+    "oauth_account_not_linked": "To confirm your identity, please sign in with the same account you originally used.",
+    "try_signing_in_with_different_account": "Try signing in with a different account.",
+    "unable_to_signin": "Unable to Sign In",
+    "user_disabled": "User Disabled",
+    "your_account_has_been_disabled": "Your account has been disabled."
+  },
+  "auth-layout": {},
+  "auth-new": {
+    "create_password": "Create Password",
+    "create_password_for_account": "Create a password for your account",
+    "skip_password_tips": "Skip password setup and sign in directly",
+    "create_password_tips": "Create a password for your account, so you can sign in with your email address and password."
+  },
+  "auth-signin": {
+    "and": "and",
+    "by_continuing_you_agree_to_our": "By continuing, you agree to our",
+    "continue": "Continue",
+    "create_an_account": "Create an Account",
+    "enter_email_signin_or_register": "Enter your email to sign in or create an account.",
+    "or_use": "Or use",
+    "password_signin": "Sign in with Password",
+    "privacy_policy": "Privacy Policy",
+    "registration_closed": "Registration is currently closed.",
+    "signin": "Sign In",
+    "terms_of_service": "Terms of Service",
+    "your_email_address": "Your Email Address"
+  },
+  "auth-signin-credential": {
+    "and": "and",
+    "back_to_signup": "Back to Sign Up",
+    "by_continuing_you_agree_to_our": "By continuing, you agree to our",
+    "enter_valid_email_address": "Please enter a valid email address.",
+    "enter_your_password": "Please enter your password.",
+    "password_signin": "Sign in with Password",
+    "privacy_policy": "Privacy Policy",
+    "signin": "Sign In",
+    "terms_of_service": "Terms of Service",
+    "your_email_address": "Your Email Address",
+    "your_password": "Your Password"
+  },
+  "auth-signout": {
+    "confirm": "Confirm",
+    "confirm_sign_out": "Sure you wanna sign out?"
+  },
+  "auth-verify": {},
+  "dashboard": {
+    "announcement": "Announcement",
+    "balance": "Balance",
+    "earnings": "Earnings",
+    "no_announcement": "No announcement",
+    "recent_days_traffic_usage": "Recent 7 days of traffic usage",
+    "system_running_normally": "System is running normally",
+    "system_status": "System Status",
+    "traffic_usage": "Traffic Usage",
+    "yesterday_consumption": "Yesterday's Consumption",
+    "yesterday_earnings": "Yesterday's Earnings"
+  },
+  "dashboard-system-status": {
+    "download": "Download",
+    "memory": "Memory",
+    "network": "Network",
+    "upload": "Upload"
+  },
+  "dashboard-traffic-usage": {
+    "used_traffic": "Used Traffic"
+  },
+  "forward": {
+    "forward": "Forward"
+  },
+  "forward-forward-delete": {
+    "all_related_data_deleted": "and all related data will be deleted.",
+    "cancel": "Cancel",
+    "confirm_delete_forward_config": "Are you sure you want to delete this forwarding configuration?",
+    "continue": "Continue",
+    "delete_entire_network_on_networking_page": "you should go to the networking page to delete the entire network",
+    "forwarding_stopped": "Forwarding will be stopped",
+    "if_forward_created_through_networking": "If this forwarding was created through networking",
+    "operation_irreversible": "This action cannot be undone."
+  },
+  "forward-forward-modify-remark": {
+    "cancel": "Cancel",
+    "enter_remark_here": "Enter your remark here",
+    "save": "Save",
+    "update_forward_remark": "Update Forward Remark"
+  },
+  "forward-forward-new": {
+    "can_be": "Can be",
+    "enter_forwarding_info": "Please fill in the forwarding information",
+    "forwarding_method": "Forwarding Method",
+    "forwarding_target": "Forwarding Target",
+    "limit_range": "Limit Range",
+    "more_config": "More Config",
+    "new_forward": "New Forward",
+    "no_available_servers": "No available servers",
+    "or_domain_name": "or domain name",
+    "relay_server": "Relay Server",
+    "remark": "Remark",
+    "reset": "Reset",
+    "save": "Save",
+    "select_forwarding_method": "Please select a forwarding method",
+    "select_relay_server": "Please select a relay server",
+    "server": "Server",
+    "server_port": "Server Port",
+    "target_port": "Target Port"
+  },
+  "forward-forward-new-gost": {
+    "channel": "Channel",
+    "enable_after_selection": "Enable after selection",
+    "multiplexing": "Multiplexing",
+    "protocol": "Protocol",
+    "relay_data_channel": "Relay Data Channel",
+    "relay_data_protocol": "Relay Data Protocol"
+  },
+  "forward-forward-reset-traffic": {
+    "cancel": "Cancel",
+    "confirm_reset_forward_traffic": "Are you sure you want to reset the traffic for this forwarding configuration?",
+    "continue": "Continue",
+    "operation_irreversible": "This action cannot be undone.",
+    "used_traffic_reset": "Used traffic will be reset"
+  },
+  "forward-forward-table": {
+    "add": "Add",
+    "delete": "Delete",
+    "modify_remark": "Modify Remark",
+    "remark": "Remark",
+    "reset": "Reset",
+    "reset_traffic": "Reset Traffic",
+    "server": "Server",
+    "status": "Status",
+    "target": "Target",
+    "used_traffic": "Used Traffic",
+    "user": "User"
+  },
+  "global_theme-provider": {},
+  "global_monthly-traffic-usage": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December",
+    "upload": "Upload",
+    "download": "Download"
+  },
+  "global_user-column": {},
+  "global_channel-selector": {
+    "select-a-channel": "Select a channel",
+    "search": "Search",
+    "no-data": "No data"
+  },
+  "global_search-empty-state": {},
+  "global_update-password-dialog": {
+    "change-password": "Change Password",
+    "set-password": "Set Password",
+    "update-password": "Update Password"
+  },
+  "global_resizable-layout": {},
+  "global_traffic": {},
+  "global_code-input": {
+    "format": "Format"
+  },
+  "global_update-password-form": {
+    "password-must-be-at-least": "Password must be at least",
+    "characters-long": "characters long",
+    "and-contain-at-least": "and contain at least",
+    "letters-and": "letters and",
+    "numbers": "numbers",
+    "passwords-do-not-match": "Passwords do not match",
+    "please-enter-your-old-password": "Please enter your old password",
+    "old-password": "Old Password",
+    "password": "Password",
+    "confirm-password": "Confirm Password",
+    "save": "Save"
+  },
+  "global_locale-switcher": {
+    "label": "Change language",
+    "locale": "{locale, select, zh {🇨🇳 简体中文} en {🇺🇸 English} other {Unknown}}"
+  },
+  "global_faceted-filter": {},
+  "global_logo": {},
+  "global_id": {
+    "created-at": "Created at"
+  },
+  "global_menu": {
+    "personal-center": "Personal Center",
+    "balance": "Balance",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "forward": "Forward",
+    "agent": "Agent",
+    "network": "Network",
+    "ticket": "Ticket",
+    "manage": "Manage",
+    "users": "Users",
+    "statistics": "Statistics",
+    "system": "System",
+    "log": "Log",
+    "config": "Config"
+  },
+  "global_table-faceted-filter": {},
+  "global_loading": {},
+  "global_table": {
+    "no-data": "No data"
+  },
+  "global_sidebar-nav": {},
+  "global_welcome": {},
+  "global_table-view-options": {},
+  "index": {
+    "Dashboard": "Dashboard",
+    "Sign In": "Sign In",
+    "Welcome": "Welcome"
+  },
+  "network": {
+    "networking": "Nope"
+  },
+  "network-[networkId]": {
+    "networking": "Nope"
+  },
+  "network-agent-edge": {
+    "random": "Random"
+  },
+  "network-agent-edge-forward-settings": {
+    "channel": "Channel",
+    "default_random": "Default Random",
+    "enter_port_to_forward": "Enter the port you need to forward",
+    "forwarding_method": "Forwarding Method",
+    "forwarding_method_required": "Forwarding method is required",
+    "forwarding_port": "Forwarding Port",
+    "forwarding_port_required": "Forwarding port is required",
+    "listening_port": "Listening Port",
+    "listening_port_greater_than": "Listening port must be greater than",
+    "listening_port_less_than": "Listening port must be less than",
+    "port_range": "Port Range",
+    "relay_settings": "Relay Settings",
+    "target_port_greater_than": "Target port must be greater than",
+    "target_port_less_than": "Target port must be less than"
+  },
+  "network-agent-edge-test": {
+    "avg_delay": "Avg Delay",
+    "diagnose_relayed_network_connection": "Diagnose relayed network connection",
+    "execution_result": "Execution Result",
+    "failed": "Failed",
+    "max_delay": "Max Delay",
+    "min_delay": "Min Delay",
+    "network_diagnostics": "Network Diagnostics",
+    "packet_loss_rate": "Packet Loss Rate",
+    "start": "Start",
+    "test": "Test",
+    "test_method": "Test Method"
+  },
+  "network-agent-edge-toolbar": {},
+  "network-agent-node": {},
+  "network-external-node": {},
+  "network-external-node-new": {
+    "address": "Address",
+    "address_or_domain_name": "address or domain name",
+    "create": "Create",
+    "create_external_node": "Create External Node",
+    "enter_external_node": "Enter external node",
+    "enter_external_node_name": "Enter external node name",
+    "enter_node_address": "Enter node address",
+    "enter_node_name": "Enter node name",
+    "enter_valid_address": "Please enter a valid address.",
+    "name": "Name",
+    "support": "Support",
+    "used_to_identify_node": "Used to identify this node"
+  },
+  "network-network-command": {
+    "add_external_node": "Add External Node",
+    "added": "Added",
+    "operation": "Operation",
+    "search_add_server": "Search and add server"
+  },
+  "network-network-delete": {
+    "all_forwarding_stopped": "All forwarding will be stopped.",
+    "all_related_data_deleted": "And all related data will be deleted.",
+    "cancel": "Cancel",
+    "confirm_delete_network_config": "Are you sure you want to delete this network configuration?",
+    "continue": "Continue",
+    "network_config_deleted_from_system": "This network configuration will be deleted from the system.",
+    "operation_irreversible": "This action cannot be undone."
+  },
+  "network-network-edit": {
+    "apply_to_network": "Apply to Network",
+    "cancel": "Cancel",
+    "network_name": "Network Name",
+    "please_operate_with_caution": "Please proceed with caution.",
+    "save": "Save",
+    "save_as_new_network_config": "Save as New Network Config",
+    "this_will_overwrite_current_network_config": "This will overwrite the current network configuration.",
+    "update_network_config": "Update Network Config"
+  },
+  "network-network-flow": {
+    "new_network": "New Network"
+  },
+  "network-network-selector": {},
+  "network-network-table": {
+    "copy_entrance_address": "Copy Entrance Address",
+    "create_new_network": "Create New Network",
+    "creator": "Creator",
+    "filter_name": "Filter Name",
+    "name": "Name",
+    "node_info": "Node Info",
+    "nodes": "Nodes",
+    "reset": "Reset",
+    "traffic": "Traffic"
+  },
+  "ticket": {
+    "tickets": "Tickets"
+  },
+  "ticket-[ticketId]": {
+    "created_at": "Created At",
+    "ticket": "Ticket"
+  },
+  "ticket-markdown-input": {
+    "edit": "Edit",
+    "preview": "Preview"
+  },
+  "ticket-new": {
+    "create_ticket": "Create Ticket",
+    "ticket": "Ticket"
+  },
+  "ticket-new-ticket-form": {
+    "briefly_describe_problem": "Please briefly describe your problem",
+    "characters": "characters",
+    "content": "Content",
+    "format": "format",
+    "max_length": "Max length",
+    "save": "Save",
+    "support": "Support",
+    "title": "Title"
+  },
+  "ticket-ticket-close": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "confirm_close_ticket": "Are you sure you want to close this ticket?",
+    "continue": "Continue"
+  },
+  "ticket-ticket-reply": {
+    "reply": "Reply"
+  },
+  "ticket-ticket-status-badge": {},
+  "ticket-ticket-table": {
+    "create_new_ticket": "Create New Ticket",
+    "creator": "Creator",
+    "reset": "Reset",
+    "status": "Status",
+    "title": "Title"
+  },
+  "user-[userId]": {
+    "profile": "Profile",
+    "relogin_required_to_take_effect": "Requires re-login to take effect",
+    "set_name_avatar": "Set your name and avatar"
+  },
+  "user-[userId]-account": {
+    "account": "Account",
+    "email": "Email",
+    "password": "Password",
+    "password_not_set": "Password not set",
+    "view_update_account_info": "View and update your account information"
+  },
+  "user-[userId]-balance": {
+    "available_balance": "Available Balance",
+    "earnings_amount": "Earnings Amount"
+  },
+  "user-[userId]-balance-log": {
+    "balance": "Balance",
+    "balance_history": "Balance History",
+    "change_amount": "Change Amount",
+    "other_info": "Other Info",
+    "time": "Time"
+  },
+  "user-[userId]-layout": {
+    "account": "Account",
+    "balance": "Balance",
+    "manage_account_settings_email_preferences": "Manage your account settings and set email preferences",
+    "personal_center": "Personal Center",
+    "profile": "Profile",
+    "user_center": "User Center"
+  },
+  "user-[userId]-profile-form": {
+    "avatar": "Avatar",
+    "avatar_link": "Avatar Link",
+    "name": "Name",
+    "name_displayed_in_profile": "Name displayed in your profile",
+    "save": "Save"
+  },
+  "user-[userId]-recharge-balance": {
+    "balance_recharge": "Balance Recharge",
+    "enter_recharge_code": "Enter recharge code",
+    "recharge": "Recharge",
+    "recharge_code": "Recharge Code"
+  },
+  "user-[userId]-recharge-depay": {
+    "after_clicking_confirm": "After clicking confirm",
+    "and": "and",
+    "confirm": "Confirm",
+    "enter_crypto_wallet_select_payment_method": "you will enter the crypto wallet to select a payment method",
+    "invalid_amount": "Invalid amount",
+    "minimum_recharge_amount": "Minimum recharge amount",
+    "notes": "Notes",
+    "recharge": "Recharge",
+    "recharge_amount": "Recharge Amount",
+    "recharge_failed": "Recharge Failed",
+    "recharge_handling_fee": "Recharge requires a handling fee of",
+    "recharge_successful": "Recharge Successful",
+    "support": "Support",
+    "supported_networks": "Supported networks"
+  },
+  "user-[userId]-update-balance": {
+    "add_or_subtract_balance": "Add or subtract balance for the user",
+    "amount": "Amount",
+    "reduce_balance": "Reduce Balance",
+    "remark": "Remark",
+    "save": "Save",
+    "update_balance": "Update Balance"
+  },
+  "user-[userId]-withdrawal-balance": {
+    "amount": "Amount",
+    "current_earnings_balance": "Current Earnings Balance",
+    "deduct_handling_fee": "A handling fee will be deducted",
+    "minimum_withdrawal_amount": "Minimum withdrawal amount is",
+    "please_provide": "Please provide",
+    "receiving_address": "Receiving Address",
+    "request_withdrawal": "Request Withdrawal",
+    "request_withdrawal_to_specified_address": "Request withdrawal to the specified address",
+    "subject_to_actual_received_amount": "Subject to the actual received amount",
+    "withdrawal": "Withdrawal"
+  }
+}

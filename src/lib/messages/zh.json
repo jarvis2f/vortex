@@ -1,0 +1,9 @@
+{
+  "locale-switcher": {
+    "label": "选择语言",
+    "locale": "{locale, select, zh {🇨🇳 中文} en {🇺🇸 English} other {Unknown}}"
+  },
+  "index": {
+    "Welcome": "欢迎"
+  }
+}
