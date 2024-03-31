@@ -18,10 +18,10 @@ Vortex
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/jarvis2f/vortex/main/public/dashboard.png" alt="Vortex Dashboard" width="70%"/>
+    <img src="https://raw.githubusercontent.com/jarvis2f/vortex/main/doc/dashboard.png" alt="Vortex Dashboard" width="90%"/>
 </p>
 <p align="center">
-    <img src="https://raw.githubusercontent.com/jarvis2f/vortex/main/public/server.png" alt="Vortex Umami" width="70%"/>
+    <img src="https://raw.githubusercontent.com/jarvis2f/vortex/main/doc/server.png" alt="Vortex Umami" width="90%"/>
 </p>
 
 # Installation
@@ -42,6 +42,16 @@ docker-compose up
 
 ```bash
 docker-compose -f docker-compose.umami.yml up
+```
+
+### Backup and Restore PostgreSQL
+
+```bash
+docker exec -t vortex-postgres pg_dump -U postgres --data-only vortex > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
+```
+
+```bash
+cat dump.sql | docker exec -i vortex_postgres psql -U postgres -d vortex
 ```
 
 ## Vercel
