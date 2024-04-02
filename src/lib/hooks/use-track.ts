@@ -4,7 +4,7 @@ export function useTrack() {
   const { data: session } = useSession();
   return {
     track: (event: string, data: Record<string, any>) => {
-      if (!umami) {
+      if (typeof umami === "undefined") {
         return;
       }
       if (session?.user) {
