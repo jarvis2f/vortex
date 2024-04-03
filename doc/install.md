@@ -86,7 +86,7 @@ USDT / USDC 支付配置， 请参考 [Depay](https://depay.com) 的文档。
 ### 其它
 
 - SERVER_URL={url} # 你的域名，agent 会连接到这个地址
-- AGENT_SHELL_URL={url} # agent 的 shell 脚本地址, 可以参考 vortex-agent/scripts/server.py 中的代码，使用 python 启动一个文件服务器，然后将文件放到这个地址内。
+- AGENT_SHELL_URL={url} # agent 的 shell 脚本地址, 可以参考 vortex-agent/scripts/server.py 中的代码，使用 python 启动一个文件服务器，然后将文件放到这个地址内，或者直接使用 `https://raw.githubusercontent.com/jarvis2f/vortex-agent/main/scripts`
 
 ### Umami (可选)
 
