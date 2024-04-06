@@ -180,7 +180,7 @@ export const AGENT_CONFIG_SCHEMA_MAP: Partial<
   AGENT_GOST_CONFIG: {
     title: "Agent GOST 配置",
     description:
-      "节点 GOST 配置，用于节点GOST服务 /ect/gost/config.json 的配置内容。",
+      "节点 GOST 配置，用于节点GOST服务 /etc/gost/config.json 的配置内容。",
     component: "textarea",
     type: "json",
   },
