@@ -18,6 +18,7 @@ import { Button } from "~/lib/ui/button";
 import { useEffect, useState } from "react";
 import { type RouterOutputs } from "~/trpc/shared";
 import { useTrack } from "~/lib/hooks/use-track";
+import { useTranslations } from "use-intl";
 
 const updateProfileFormSchema = z.object({
   name: z.string().min(1).max(255).optional(),
@@ -29,6 +30,7 @@ export default function ProfileForm({
 }: {
   user: RouterOutputs["user"]["getOne"];
 }) {
+  const t = useTranslations("user-[userId]-profile-form");
   const updateProfileMutation = api.user.updateProfile.useMutation();
   const { track } = useTrack();
   const form = useForm<z.infer<typeof updateProfileFormSchema>>({
@@ -68,11 +70,13 @@ export default function ProfileForm({
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>名称</FormLabel>
+                <FormLabel>{t("name")}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
-                <FormDescription>显示在您的个人资料中的名称</FormDescription>
+                <FormDescription>
+                  {t("name_displayed_in_profile")}
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -82,11 +86,11 @@ export default function ProfileForm({
             name="image"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>头像</FormLabel>
+                <FormLabel>{t("avatar")}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
-                <FormDescription>头像链接</FormDescription>
+                <FormDescription>{t("avatar_link")}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -98,7 +102,7 @@ export default function ProfileForm({
               loading={updateProfileMutation.isLoading}
               success={updateProfileMutation.isSuccess}
             >
-              保存
+              {t("save")}
             </Button>
           </div>
         </form>

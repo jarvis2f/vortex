@@ -29,6 +29,7 @@ import { Label } from "~/lib/ui/label";
 import { MoneyInput } from "~/lib/ui/money-input";
 import { type BalanceType } from "@prisma/client";
 import { useTrack } from "~/lib/hooks/use-track";
+import { useTranslations } from "use-intl";
 
 export const updateBalanceFormSchema = z.object({
   amount: z.preprocess(
@@ -45,6 +46,7 @@ export default function UpdateBalance({
   userId: string;
   balanceType?: BalanceType;
 }) {
+  const t = useTranslations("user-[userId]-update-balance");
   const [deduct, setDeduct] = useState(false);
   const { track } = useTrack();
   const updateBalanceMutation = api.user.updateBalance.useMutation({});
@@ -74,13 +76,13 @@ export default function UpdateBalance({
       <DialogTrigger asChild>
         <Button variant="outline">
           <HandCoinsIcon className="mr-2 h-5 w-5" />
-          更新余额
+          {t("update_balance")}
         </Button>
       </DialogTrigger>
       <DialogContent className="min-w-20">
         <DialogHeader>
-          <DialogTitle>更新余额</DialogTitle>
-          <DialogDescription>为用户添加或减少余额</DialogDescription>
+          <DialogTitle>{t("update_balance")}</DialogTitle>
+          <DialogDescription>{t("add_or_subtract_balance")}</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form className="max-h-[30rem] space-y-3 overflow-y-auto p-1">
@@ -89,7 +91,7 @@ export default function UpdateBalance({
               name="amount"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>金额</FormLabel>
+                  <FormLabel>{t("amount")}</FormLabel>
                   <FormControl>
                     <MoneyInput
                       value={field.value}
@@ -107,7 +109,7 @@ export default function UpdateBalance({
               name="extra"
               render={({ field }) => (
                 <FormItem className={cn("col-span-4")}>
-                  <FormLabel>备注</FormLabel>
+                  <FormLabel>{t("remark")}</FormLabel>
                   <FormControl>
                     <Textarea {...field} />
                   </FormControl>
@@ -119,7 +121,7 @@ export default function UpdateBalance({
         </Form>
         <DialogFooter>
           <div className="flex items-center gap-3">
-            <Label htmlFor="deduct">减少余额</Label>
+            <Label htmlFor="deduct">{t("reduce_balance")}</Label>
             <Switch id="deduct" onCheckedChange={setDeduct} checked={deduct} />
           </div>
           <Button
@@ -127,7 +129,7 @@ export default function UpdateBalance({
             loading={updateBalanceMutation.isLoading}
             success={updateBalanceMutation.isSuccess}
           >
-            保存
+            {t("save")}
           </Button>
         </DialogFooter>
       </DialogContent>

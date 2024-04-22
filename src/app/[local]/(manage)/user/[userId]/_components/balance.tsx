@@ -7,6 +7,7 @@ import RechargeBalance from "~/app/[local]/(manage)/user/[userId]/_components/re
 import { MoneyInput } from "~/lib/ui/money-input";
 import { BalanceType } from "@prisma/client";
 import WithdrawalBalance from "~/app/[local]/(manage)/user/[userId]/_components/withdrawal-balance";
+import { useTranslations } from "use-intl";
 
 interface BalanceProps {
   wallet: {
@@ -18,13 +19,13 @@ interface BalanceProps {
 
 export default function Balance({ wallet, userId }: BalanceProps) {
   const { data: session } = useSession();
-
+  const t = useTranslations("user-[userId]-balance");
   return (
     <Card>
       <CardHeader>
         {wallet?.balanceType === BalanceType.CONSUMPTION
-          ? "可消费余额"
-          : "收益金额"}
+          ? t("available_balance")
+          : t("earnings_amount")}
       </CardHeader>
       <CardContent>
         <MoneyInput displayType="text" value={wallet?.balance} />

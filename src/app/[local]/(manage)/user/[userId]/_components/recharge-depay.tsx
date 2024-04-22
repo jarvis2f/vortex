@@ -11,6 +11,7 @@ import { type RouterOutputs } from "~/trpc/shared";
 import Image from "next/image";
 import Blockchains from "@depay/web3-blockchains";
 import { useTrack } from "~/lib/hooks/use-track";
+import { useTranslations } from "use-intl";
 
 const dePayWidgetStyles = `
 .PoweredByWrapper {
@@ -39,6 +40,7 @@ const dePayWidgetStyles = `
           `;
 
 export default function RechargeDepay() {
+  const t = useTranslations("user-[userId]-recharge-depay");
   const dePayRef = useRef(null);
   const [amount, setAmount] = useState("0");
   const [dePay, setDePay] = useState<{
@@ -78,15 +80,15 @@ export default function RechargeDepay() {
             amount: data.amount,
           });
           toast({
-            title: "充值成功",
-            description: `充值金额 ${data.amount} USDC/USDT`,
+            title: t("recharge_successful"),
+            description: `${t("recharge_amount")} ${data.amount} USDC/USDT`,
           });
         } else if (data?.status === "FAILED") {
           track("recharge-depay-fail", {
             amount: data.amount,
           });
           toast({
-            title: "充值失败",
+            title: t("recharge_failed"),
             variant: "destructive",
           });
         }
@@ -118,7 +120,7 @@ export default function RechargeDepay() {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     const configuration: DePayWidgets.PaymentOptions = {
-      title: "充值",
+      title: t("recharge"),
       container: dePayRef.current,
       integration: dePayIntegrationId,
       payload: payload,
@@ -165,8 +167,8 @@ export default function RechargeDepay() {
     const amountNumber = parseFloat(amount);
     if (isNaN(amountNumber) || amountNumber < rechargeMinAmount) {
       toast({
-        title: "无效的金额",
-        description: `充值金额最低 ${rechargeMinAmount} USDC/USDT`,
+        title: t("invalid_amount"),
+        description: `${t("recharge_amount")} ${rechargeMinAmount} USDC/USDT`,
         variant: "destructive",
       });
       return;
@@ -191,7 +193,7 @@ export default function RechargeDepay() {
       {!dePay.loaded && (
         <>
           <div className="space-y-4">
-            <Label>充值金额</Label>
+            <Label>{t("recharge_amount")}</Label>
             <MoneyInput
               value={amount}
               onValueChange={(values) => {
@@ -201,21 +203,22 @@ export default function RechargeDepay() {
             <Button onClick={() => createPayment()} className="w-full">
               <TetherIcon className="mr-2 h-5 w-5" />
               <USDCIcon className="mr-2 h-5 w-5" />
-              确认
+              {t("confirm")}
             </Button>
           </div>
           <div className="space-y-4">
-            <h3 className="mt-4 text-lg font-semibold">注意事项</h3>
+            <h3 className="mt-4 text-lg font-semibold">{t("notes")}</h3>
             <p className="text-sm">
-              1. 支持 <b>USDC</b> 和 <b>USDT</b> 充值，充值金额最低 $
-              {rechargeMinAmount}。
+              1.{" "}
+              {t.rich("note_1", {
+                important: (children) => <b>{children}</b>,
+                rechargeMinAmount: rechargeMinAmount,
+              })}
             </p>
-            <p className="text-sm">
-              2. 点击确认后，将会进入加密钱包选择支付方式。
-            </p>
-            <p className="text-sm">3. 充值需要收取 1.5% 的手续费。</p>
+            <p className="text-sm">2. {t("note_2")}</p>
+            <p className="text-sm">3. {t("note_3")}</p>
             <div>
-              <p className="text-md mb-2">支持的网络</p>
+              <p className="text-md mb-2">{t("supported_networks")}</p>
               <ul className="space-y-2">
                 {[
                   Blockchains.avalanche,

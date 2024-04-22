@@ -26,6 +26,7 @@ import { api } from "~/trpc/react";
 import { useForm } from "react-hook-form";
 import { useMemo } from "react";
 import { useTrack } from "~/lib/hooks/use-track";
+import { useTranslations } from "use-intl";
 
 export const withdrawalBalanceFormSchema = z.object({
   amount: z.preprocess(
@@ -36,6 +37,7 @@ export const withdrawalBalanceFormSchema = z.object({
 });
 
 export default function WithdrawalBalance({ balance }: { balance: string }) {
+  const t = useTranslations("user-[userId]-withdrawal-balance");
   const createWithdrawalMutation = api.withdrawal.create.useMutation({});
   const { data: config } = api.system.getConfig.useQuery({
     key: "WITHDRAW_MIN_AMOUNT",
@@ -64,15 +66,17 @@ export default function WithdrawalBalance({ balance }: { balance: string }) {
       <DialogTrigger asChild>
         <Button>
           <CircleDollarSignIcon className="mr-2 h-5 w-5" />
-          申请提现
+          {t("request_withdrawal")}
         </Button>
       </DialogTrigger>
       <DialogContent className="min-w-20">
         <DialogHeader>
-          <DialogTitle>提现</DialogTitle>
+          <DialogTitle>{t("withdrawal")}</DialogTitle>
           <DialogDescription className="space-y-1">
-            <p>申请提现到指定的地址，需要扣除部分手续费，以实际到账金额为准</p>
-            <p>当前收益余额：${balance}</p>
+            <p>{t("request_withdrawal_desc")}</p>
+            <p>
+              {t("current_earnings_balance")}：${balance}
+            </p>
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -82,9 +86,9 @@ export default function WithdrawalBalance({ balance }: { balance: string }) {
               name="amount"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>金额</FormLabel>
+                  <FormLabel>{t("amount")}</FormLabel>
                   <FormDescription>
-                    最低提现金额为 ${withdrawMinAmount}
+                    {t("minimum_withdrawal_amount")} ${withdrawMinAmount}
                   </FormDescription>
                   <FormControl>
                     <MoneyInput
@@ -107,8 +111,10 @@ export default function WithdrawalBalance({ balance }: { balance: string }) {
               name="address"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>收款地址</FormLabel>
-                  <FormDescription>请提供 USDC 收款地址</FormDescription>
+                  <FormLabel>{t("receiving_address")}</FormLabel>
+                  <FormDescription>
+                    {t("please_provide")} USDC {t("receiving_address")}
+                  </FormDescription>
                   <FormControl>
                     <Input {...field} autoFocus />
                   </FormControl>
@@ -128,7 +134,7 @@ export default function WithdrawalBalance({ balance }: { balance: string }) {
             loading={createWithdrawalMutation.isLoading}
             success={createWithdrawalMutation.isSuccess}
           >
-            申请提现
+            {t("request_withdrawal")}
           </Button>
         </DialogFooter>
       </DialogContent>

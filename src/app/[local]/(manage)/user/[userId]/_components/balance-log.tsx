@@ -9,6 +9,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "~/lib/ui/tooltip";
 import type { RouterOutputs } from "~/trpc/shared";
 import { MoneyInput } from "~/lib/ui/money-input";
 import { type BalanceType } from "@prisma/client";
+import { useTranslations } from "use-intl";
 
 export default function BalanceLog({
   userId,
@@ -17,6 +18,7 @@ export default function BalanceLog({
   userId: string;
   balanceType?: BalanceType;
 }) {
+  const t = useTranslations("user-[userId]-balance-log");
   const getLogs = api.user.getBalanceLogs.useInfiniteQuery(
     {
       id: userId,
@@ -105,15 +107,15 @@ export default function BalanceLog({
 
   return (
     <Card>
-      <CardHeader>余额历史</CardHeader>
+      <CardHeader>{t("balance_history")}</CardHeader>
       <CardContent>
         <div className="border-b">
           <div className="flex space-x-2 py-1 text-left text-sm text-muted-foreground">
-            <div className="w-[170px]">时间</div>
+            <div className="w-[170px]">{t("time")}</div>
             <div className="grid flex-1 grid-cols-4 gap-2">
-              <p>变动金额</p>
-              <p>余额</p>
-              <p className="col-span-2">其它信息</p>
+              <p>{t("change_amount")}</p>
+              <p>{t("balance")}</p>
+              <p className="col-span-2">{t("other_info")}</p>
             </div>
           </div>
         </div>

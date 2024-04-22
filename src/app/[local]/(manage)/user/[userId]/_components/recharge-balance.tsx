@@ -14,6 +14,7 @@ import { api } from "~/trpc/react";
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { useTrack } from "~/lib/hooks/use-track";
+import { useTranslations } from "use-intl";
 
 const RechargeDepay = dynamic(() => import("./recharge-depay"), {
   ssr: false,
@@ -28,6 +29,7 @@ const RechargeDepay = dynamic(() => import("./recharge-depay"), {
 });
 
 export default function RechargeBalance({ userId }: { userId: string }) {
+  const t = useTranslations("user-[userId]-recharge-balance");
   const [code, setCode] = useState("");
   const rechargeBalanceByCodeMutation =
     api.user.rechargeBalanceByCode.useMutation();
@@ -38,27 +40,29 @@ export default function RechargeBalance({ userId }: { userId: string }) {
       <DialogTrigger asChild>
         <Button>
           <GemIcon className="mr-2 h-5 w-5" />
-          充值
+          {t("recharge")}
         </Button>
       </DialogTrigger>
       <DialogContent className="h-full w-full md:h-auto md:min-w-20">
         <DialogHeader>
-          <DialogTitle>余额充值</DialogTitle>
+          <DialogTitle>{t("balance_recharge")}</DialogTitle>
         </DialogHeader>
         <Tabs defaultValue="recharge">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="recharge">充值</TabsTrigger>
-            <TabsTrigger value="recharge_code">充值码</TabsTrigger>
+            <TabsTrigger value="recharge">{t("recharge")}</TabsTrigger>
+            <TabsTrigger value="recharge_code">
+              {t("recharge_code")}
+            </TabsTrigger>
           </TabsList>
-          <TabsContent value={"recharge"} className="h-[570px]">
+          <TabsContent value={"recharge"} className="h-[600px]">
             <RechargeDepay />
           </TabsContent>
           <TabsContent value="recharge_code">
             <div className="mb-4">
-              <Label>充值码</Label>
+              <Label>{t("recharge_code")}</Label>
               <div className="mt-1">
                 <Input
-                  placeholder="请输入充值码"
+                  placeholder={t("enter_recharge_code")}
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
                 />
@@ -80,7 +84,7 @@ export default function RechargeBalance({ userId }: { userId: string }) {
                 loading={rechargeBalanceByCodeMutation.isLoading}
                 success={rechargeBalanceByCodeMutation.isSuccess}
               >
-                充值
+                {t("recharge")}
               </Button>
             </div>
           </TabsContent>

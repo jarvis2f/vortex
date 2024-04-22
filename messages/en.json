@@ -650,7 +650,10 @@
   },
   "user-[userId]-balance": {
     "available_balance": "Available Balance",
-    "earnings_amount": "Earnings Amount"
+    "balance": "Balance",
+    "earnings": "Earnings",
+    "earnings_amount": "Earnings Amount",
+    "check_your_account_balance": "Check your account balance"
   },
   "user-[userId]-balance-log": {
     "balance": "Balance",
@@ -681,17 +684,17 @@
     "recharge_code": "Recharge Code"
   },
   "user-[userId]-recharge-depay": {
-    "after_clicking_confirm": "After clicking confirm",
     "and": "and",
     "confirm": "Confirm",
-    "enter_crypto_wallet_select_payment_method": "you will enter the crypto wallet to select a payment method",
     "invalid_amount": "Invalid amount",
     "minimum_recharge_amount": "Minimum recharge amount",
     "notes": "Notes",
+    "note_1": "Supports <important>USDC</important> and <important>USDT</important> recharge, with a minimum recharge amount of ${rechargeMinAmount}",
+    "note_2": "After clicking Confirm, you will enter the encrypted wallet to select the payment method.",
+    "note_3": "Top-ups are subject to a 1.5% fee.",
     "recharge": "Recharge",
     "recharge_amount": "Recharge Amount",
     "recharge_failed": "Recharge Failed",
-    "recharge_handling_fee": "Recharge requires a handling fee of",
     "recharge_successful": "Recharge Successful",
     "support": "Support",
     "supported_networks": "Supported networks"
@@ -712,8 +715,7 @@
     "please_provide": "Please provide",
     "receiving_address": "Receiving Address",
     "request_withdrawal": "Request Withdrawal",
-    "request_withdrawal_to_specified_address": "Request withdrawal to the specified address",
-    "subject_to_actual_received_amount": "Subject to the actual received amount",
+    "request_withdrawal_desc": "When applying for withdrawal to the designated address, part of the handling fee needs to be deducted, and the actual amount received shall prevail.",
     "withdrawal": "Withdrawal"
   }
 }

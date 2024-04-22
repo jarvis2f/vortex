@@ -650,7 +650,10 @@
   },
   "user-[userId]-balance": {
     "available_balance": "可消费余额",
-    "earnings_amount": "收益金额"
+    "balance": "余额",
+    "earnings": "收益",
+    "earnings_amount": "收益金额",
+    "check_your_account_balance": "查看你的账户余额"
   },
   "user-[userId]-balance-log": {
     "balance": "余额",
@@ -681,17 +684,17 @@
     "recharge_code": "充值码"
   },
   "user-[userId]-recharge-depay": {
-    "after_clicking_confirm": "点击确认后",
     "and": "和",
     "confirm": "确认",
-    "enter_crypto_wallet_select_payment_method": "将会进入加密钱包选择支付方式",
     "invalid_amount": "无效的金额",
     "minimum_recharge_amount": "充值金额最低",
     "notes": "注意事项",
+    "note_1": "支持 <b>USDC</b> 和 <b>USDT</b> 充值，充值金额最低 ${rechargeMinAmount}",
+    "note_2": "点击确认后，将会进入加密钱包选择支付方式。",
+    "note_3": "充值需要收取 1.5% 的手续费。",
     "recharge": "充值",
     "recharge_amount": "充值金额",
     "recharge_failed": "充值失败",
-    "recharge_handling_fee": "充值需要收取",
     "recharge_successful": "充值成功",
     "support": "支持",
     "supported_networks": "支持的网络"
@@ -707,13 +710,11 @@
   "user-[userId]-withdrawal-balance": {
     "amount": "金额",
     "current_earnings_balance": "当前收益余额",
-    "deduct_handling_fee": "需要扣除部分手续费",
     "minimum_withdrawal_amount": "最低提现金额为",
     "please_provide": "请提供",
     "receiving_address": "收款地址",
     "request_withdrawal": "申请提现",
-    "request_withdrawal_to_specified_address": "申请提现到指定的地址",
-    "subject_to_actual_received_amount": "以实际到账金额为准",
+    "request_withdrawal_desc": "申请提现到指定的地址，需要扣除部分手续费，以实际到账金额为准",
     "withdrawal": "提现"
   }
 }

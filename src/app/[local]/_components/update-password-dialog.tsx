@@ -7,22 +7,26 @@ import {
 } from "~/lib/ui/dialog";
 import UpdatePasswordForm from "~/app/[local]/_components/update-password-form";
 import { Button } from "~/lib/ui/button";
+import { getTranslations } from "next-intl/server";
 
-export default function UpdatePasswordDialog({
+export default async function UpdatePasswordDialog({
   userId,
   type,
 }: {
   userId: string;
   type: "setup" | "reset";
 }) {
+  const t = await getTranslations("global_update-password-dialog");
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>{type === "reset" ? "更改密码" : "设置密码"}</Button>
+        <Button>
+          {type === "reset" ? t("change-password") : t("set-password")}
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>更新密码</DialogTitle>
+          <DialogTitle>{t("set-password")}</DialogTitle>
         </DialogHeader>
         <UpdatePasswordForm userId={userId} type={type} />
       </DialogContent>

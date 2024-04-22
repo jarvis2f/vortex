@@ -2,30 +2,32 @@ import { Separator } from "~/lib/ui/separator";
 import { type ReactNode } from "react";
 import { SidebarNav } from "~/app/[local]/_components/sidebar-nav";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "用户中心 - vortex",
   description: "用户中心",
 };
 
-export default function UserLayout({
+export default async function UserLayout({
   children,
   params: { userId },
 }: {
   children: ReactNode;
   params: { userId: string };
 }) {
+  const t = await getTranslations("user-[userId]-layout");
   const sidebarNavItems = [
     {
-      title: "个人资料",
+      title: t("profile"),
       href: `/user/${userId}`,
     },
     {
-      title: "账户",
+      title: t("account"),
       href: `/user/${userId}/account`,
     },
     {
-      title: "余额",
+      title: t("balance"),
       href: `/user/${userId}/balance`,
     },
   ];
@@ -33,9 +35,11 @@ export default function UserLayout({
   return (
     <div className="space-y-6 p-4 pb-16">
       <div className="space-y-0.5">
-        <h2 className="text-2xl font-bold tracking-tight">个人中心</h2>
+        <h2 className="text-2xl font-bold tracking-tight">
+          {t("user_center")}
+        </h2>
         <p className="text-muted-foreground">
-          管理您的帐户设置并设置电子邮件首选项。
+          {t("manage_account_settings_email_preferences")}
         </p>
       </div>
       <Separator className="my-6" />

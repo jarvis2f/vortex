@@ -15,6 +15,7 @@ import {
 import { Input } from "~/lib/ui/input";
 import { Button } from "~/lib/ui/button";
 import React, { useMemo } from "react";
+import { useTranslations } from "use-intl";
 
 const passwordStrengthRegex =
   /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d^@$!%*#?&]{6,16}$/;
@@ -38,6 +39,7 @@ export default function UpdatePasswordForm({
   userId: string;
   type: "setup" | "reset";
 }) {
+  const t = useTranslations("global_update-password-form");
   const updatePasswordMutation = api.user.updatePassword.useMutation();
   const router = useRouter();
 
@@ -47,7 +49,9 @@ export default function UpdatePasswordForm({
     }
     return updatePasswordFormSchema.and(
       z.object({
-        originalPassword: z.string().min(1, "请输入原密码"),
+        originalPassword: z
+          .string()
+          .min(1, t("please-enter-your-old-password")),
       }),
     );
   }, [type]);
@@ -80,7 +84,7 @@ export default function UpdatePasswordForm({
               name="originalPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>原密码</FormLabel>
+                  <FormLabel>{t("old-password")}</FormLabel>
                   <FormControl>
                     <Input
                       type="password"
@@ -100,7 +104,7 @@ export default function UpdatePasswordForm({
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>密码</FormLabel>
+                <FormLabel>{t("password")}</FormLabel>
                 <FormControl>
                   <Input
                     id="password"
@@ -120,7 +124,7 @@ export default function UpdatePasswordForm({
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>确认密码</FormLabel>
+                <FormLabel>{t("confirm-password")}</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
@@ -141,7 +145,7 @@ export default function UpdatePasswordForm({
               loading={updatePasswordMutation.isLoading}
               success={updatePasswordMutation.isSuccess}
             >
-              保存
+              {t("save")}
             </Button>
           </div>
         </form>
