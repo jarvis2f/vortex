@@ -52,8 +52,12 @@ export const ForwardMethodOptions = [
     value: "IPTABLES",
   },
   {
-    label: "GOST隧道",
+    label: "GOST",
     value: "GOST",
+  },
+  {
+    label: "Realm",
+    value: "REALM",
   },
 ];
 

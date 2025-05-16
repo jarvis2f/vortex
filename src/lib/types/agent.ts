@@ -113,6 +113,8 @@ export interface AgentPingTask extends AgentTask {
   host: string;
   count?: number;
   timeout?: number;
+  agentPort?: number;
+  forwardMethod?: string;
 }
 
 export interface AgentTaskResult {
@@ -166,8 +168,15 @@ export interface NetworkEdgeLinked {
   length: number;
 }
 
+export interface ProxyProtocol {
+  enabled: boolean;
+  version: "1" | "2";
+  send?: boolean;
+  receive?: boolean;
+}
 export interface ForwardOptions {
   channel?: string; // gost channel
   listen?: string; // gost listen protocol
   forward?: string; // gost forward protocol
+  proxyProtocol?: ProxyProtocol;
 }

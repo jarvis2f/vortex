@@ -8,6 +8,7 @@ import {
 } from ".prisma/client";
 import { db, redis } from "~/server/db";
 import Gost from "~/server/core/gost";
+import Realm from "~/server/core/realm";
 import { distributeTask, getTaskResult } from "~/server/core/agent-task";
 import type { AgentInfo } from "~/lib/types/agent";
 import { BalanceLogType, BalanceType } from "@prisma/client";
@@ -95,6 +96,11 @@ export async function deleteForward(id: string) {
     await gost.removeForward(forward);
     forward.options = gost.config as any;
   }
+  if (forward.method === ForwardMethod.REALM) {
+    const realm = await Realm(forward.agentId);
+    await realm.removeForward(forward);
+    forward.options = realm.config as any;
+  }
   if (
     forward.status === ForwardStatus.CREATED ||
     forward.status === ForwardStatus.CREATED_FAILED
@@ -142,6 +148,11 @@ export async function startForward({ forward }: { forward: Forward }) {
     await gost.addForward(forward);
     options = gost.config;
   }
+  if (method === ForwardMethod.REALM) {
+    const realm = await Realm(forward.agentId);
+    await realm.addForward(forward);
+    options = realm.config;
+  }
   const taskId = await distributeTask({
     agentId: agentId,
     task: {
@@ -166,7 +177,7 @@ export async function stopForward({ forward }: { forward: Forward }) {
       action: "delete",
       id: "",
       method: forward.method,
-      options: JSON.stringify(forward.options),
+      options: forward.options as string,
       forwardId: forward.id,
       type: "forward",
       agentPort: forward.agentPort,
@@ -228,14 +239,14 @@ export async function saveForwardTraffic({
       needSaveTraffics.push(traffic);
     }
   }
-  if (needUpdateLastTraffic) {
+  if (needUpdateLastTraffic && lastTraffic) {
     await db.forwardTraffic.update({
       where: {
-        id: lastTraffic!.id,
+        id: lastTraffic.id,
       },
       data: {
-        upload: lastTraffic!.upload,
-        download: lastTraffic!.download,
+        upload: lastTraffic.upload,
+        download: lastTraffic.download,
       },
     });
   }

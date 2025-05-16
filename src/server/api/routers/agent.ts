@@ -24,6 +24,7 @@ import { validateDataPermission } from "~/server/core/user";
 import { type Session } from "next-auth";
 import { generateServerKeyPair } from "~/lib/utils";
 import { distributeTask, getTaskResult } from "~/server/core/agent-task";
+import { ForwardMethod } from ".prisma/client";
 import AgentStatus = $Enums.AgentStatus;
 import AgentWhereInput = Prisma.AgentWhereInput;
 
@@ -288,6 +289,8 @@ export const agentRouter = createTRPCRouter({
         id: z.string(),
         target: z.string(),
         targetType: z.enum(["agent", "host"]).default("agent"),
+        agentPort: z.number().optional(),
+        forwardMethod: z.nativeEnum(ForwardMethod).optional(),
       }),
     )
     .mutation(async ({ input }) => {
@@ -323,6 +326,14 @@ export const agentRouter = createTRPCRouter({
         count: 3,
         timeout: 30,
       };
+
+      if (input.forwardMethod === "GOST" || input.forwardMethod === "REALM") {
+        task.forwardMethod = input.forwardMethod;
+      }
+
+      if (input.agentPort) {
+        task.agentPort = input.agentPort;
+      }
       const taskId = await distributeTask({
         agentId: id,
         task: task,

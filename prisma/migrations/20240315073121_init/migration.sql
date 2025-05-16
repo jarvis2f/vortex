@@ -23,7 +23,7 @@ CREATE TYPE "AgentStatus" AS ENUM ('UNKNOWN', 'ONLINE', 'OFFLINE');
 CREATE TYPE "AgentTaskStatus" AS ENUM ('CREATED', 'SUCCEEDED', 'FAILED');
 
 -- CreateEnum
-CREATE TYPE "ForwardMethod" AS ENUM ('IPTABLES', 'GOST');
+CREATE TYPE "ForwardMethod" AS ENUM ('IPTABLES', 'GOST', 'REALM');
 
 -- CreateEnum
 CREATE TYPE "ForwardStatus" AS ENUM ('CREATED', 'CREATED_FAILED', 'RUNNING', 'STOPPED');
@@ -171,6 +171,16 @@ CREATE TABLE "Config" (
     "value" TEXT,
 
     CONSTRAINT "Config_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "RealmConfig" (
+    "forwardId" TEXT NOT NULL,
+    "config" JSONB NOT NULL,
+    "agentId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    CONSTRAINT "RealmConfig_pkey" PRIMARY KEY ("forwardId")
 );
 
 -- CreateTable
@@ -392,3 +402,6 @@ ALTER TABLE "TicketReply" ADD CONSTRAINT "TicketReply_ticketId_fkey" FOREIGN KEY
 
 -- AddForeignKey
 ALTER TABLE "TicketReply" ADD CONSTRAINT "TicketReply_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "RealmConfig" ADD CONSTRAINT "RealmConfig_forwardId_fkey" FOREIGN KEY ("forwardId") REFERENCES "Forward"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

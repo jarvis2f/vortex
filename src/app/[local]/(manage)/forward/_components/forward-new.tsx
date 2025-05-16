@@ -64,7 +64,14 @@ export default function ForwardNew({
   const defaultValues = {
     agentId: agentId ?? "",
     method: ForwardMethod.IPTABLES,
-    options: {},
+    options: {
+      proxyProtocol: {
+        enabled: false,
+        version: "2", // 默认V2版本
+        send: false, // 新增：是否启用发送
+        receive: false, // 新增：是否启用接收
+      },
+    },
     agentPort: undefined,
     targetPort: undefined,
     target: "",
@@ -105,7 +112,7 @@ export default function ForwardNew({
           <DialogDescription>请填写转发信息</DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form className="max-h-[30rem] space-y-3 overflow-y-auto p-1">
+          <form className="max-h-[33rem] space-y-3 overflow-y-auto p-1">
             <div
               className={cn(
                 "grid grid-cols-2 gap-3",
@@ -220,6 +227,22 @@ export default function ForwardNew({
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="agentPort"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>服务器端口</FormLabel>
+                    <FormDescription>
+                      限制范围 {agentConfig?.AGENT_PORT_RANGE}
+                    </FormDescription>
+                    <FormControl>
+                      <Input {...field} type="number" {...agentPortRange} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
             <div className="flex items-center space-x-2">
               <Switch
@@ -231,22 +254,123 @@ export default function ForwardNew({
             </div>
             {moreConfig && (
               <div className="grid grid-cols-4 gap-3">
-                <FormField
-                  control={form.control}
-                  name="agentPort"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>服务器端口</FormLabel>
-                      <FormDescription>
-                        限制范围 {agentConfig?.AGENT_PORT_RANGE}
-                      </FormDescription>
-                      <FormControl>
-                        <Input {...field} type="number" {...agentPortRange} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
+                <div className="col-span-3 flex items-start space-x-6">
+                  {/* Proxy Protocol 启用部分 */}
+                  <div className="flex-1">
+                    <div className="mb-2">
+                      <div className="text-sm font-medium">
+                        启用 Proxy Protocol
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        是否在转发连接时添加Proxy Protocol头
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <FormField
+                        control={form.control}
+                        name="options.proxyProtocol.enabled"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-center space-x-2 space-y-0">
+                            <FormControl>
+                              <Switch
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <Label>{field.value ? "已启用" : "已禁用"}</Label>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Proxy Protocol 版本部分 - 只在启用时显示 */}
+                  {form.watch("options.proxyProtocol.enabled") && (
+                    <div className="flex-1">
+                      <div className="mb-2">
+                        <div className="text-sm font-medium">
+                          Proxy Protocol 版本
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          请选择Proxy Protocol版本
+                        </div>
+                      </div>
+                      <FormField
+                        control={form.control}
+                        name="options.proxyProtocol.version"
+                        render={({ field }) => (
+                          <FormItem className="space-y-0">
+                            <Select
+                              onValueChange={field.onChange}
+                              value={field.value}
+                            >
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="1">版本 1</SelectItem>
+                                <SelectItem value="2">版本 2 (推荐)</SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
                   )}
-                />
+
+                  {/* 当转发方式为 realm 且启用 Proxy Protocol 时显示方向选择 */}
+                  {form.watch("method") === ForwardMethod.REALM &&
+                    form.watch("options.proxyProtocol.enabled") && (
+                      <div className="flex-1">
+                        <div className="mb-2">
+                          <div className="text-sm font-medium">
+                            Proxy Protocol 方向
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            请选择要启用的方向（发送和接收可以同时选择）
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-4">
+                          <FormField
+                            control={form.control}
+                            name="options.proxyProtocol.send"
+                            render={({ field }) => (
+                              <FormItem className="flex items-center space-x-2 space-y-0">
+                                <FormControl>
+                                  <Switch
+                                    checked={field.value}
+                                    onCheckedChange={field.onChange}
+                                  />
+                                </FormControl>
+                                <Label>发送</Label>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name="options.proxyProtocol.receive"
+                            render={({ field }) => (
+                              <FormItem className="flex items-center space-x-2 space-y-0">
+                                <FormControl>
+                                  <Switch
+                                    checked={field.value}
+                                    onCheckedChange={field.onChange}
+                                  />
+                                </FormControl>
+                                <Label>接收</Label>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                      </div>
+                    )}
+                </div>
                 {/*{form.getValues("method") === "GOST" && (*/}
                 {/*  <ForwardNewGost form={form} />*/}
                 {/*)}*/}
