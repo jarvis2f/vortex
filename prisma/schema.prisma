@@ -188,6 +188,15 @@ model Config {
   @@unique([relationId, key])
 }
 
+model RealmConfig {
+    forwardId String   @id
+    forward   Forward  @relation(fields: [forwardId], references: [id])
+    config    Json
+    agentId   String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
 enum AgentStatus {
   UNKNOWN
   ONLINE
@@ -247,6 +256,7 @@ model AgentTask {
 enum ForwardMethod {
   IPTABLES
   GOST
+  REALM
 }
 
 enum ForwardStatus {
@@ -287,6 +297,7 @@ model Forward {
 
   traffic     ForwardTraffic[]
   networkEdge NetworkEdge?
+  realmConfig RealmConfig?
 }
 
 model ForwardTraffic {

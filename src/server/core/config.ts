@@ -10,7 +10,17 @@ export async function saveConfig(
   relationId = "0",
 ) {
   let value;
-  if (v instanceof Object) {
+  if (typeof v === "string") {
+    try {
+      // 尝试解析字符串，看是否是JSON
+      JSON.parse(v);
+      // 如果能解析，说明已经是JSON字符串，直接使用
+      value = v;
+    } catch (e) {
+      // 不是JSON字符串，按普通字符串处理
+      value = v;
+    }
+  } else if (v instanceof Object) {
     value = JSON.stringify(v);
   } else {
     value = String(v);

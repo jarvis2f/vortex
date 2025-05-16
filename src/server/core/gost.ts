@@ -1,6 +1,10 @@
 import { getConfig, saveConfig } from "~/server/core/config";
 import { type Forward, type Prisma } from ".prisma/client";
-import { type ConnectConfig, type ForwardOptions } from "~/lib/types/agent";
+import {
+  type ProxyProtocol,
+  type ConnectConfig,
+  type ForwardOptions,
+} from "~/lib/types/agent";
 import { z } from "zod";
 import { env } from "~/env";
 import { distributeTask } from "~/server/core/agent-task";
@@ -259,6 +263,188 @@ interface Gost {
   setObserver: () => void | Promise<void>;
 }
 
+// 根据协议类型和代理协议生成handler对象
+function createHandler(
+  protocol: string,
+  proxyProtocol: ProxyProtocol,
+): Handler {
+  let handlerType: string;
+
+  if (proxyProtocol.enabled) {
+    // 如果启用了代理协议，使用rtcp或rudp
+    handlerType = protocol === "udp" ? "rudp" : "rtcp";
+  } else {
+    // 否则使用标准类型
+    handlerType = protocol === "udp" ? "udp" : "tcp";
+  }
+
+  const handler: Handler = {
+    type: handlerType,
+  };
+
+  // 如果启用了代理协议，添加元数据
+  if (proxyProtocol.enabled) {
+    handler.metadata = {
+      proxyProtocol: proxyProtocol.version,
+    };
+  }
+
+  return handler;
+}
+
+// 根据协议类型、通道和代理协议生成listener对象
+function createListener(
+  protocol: string,
+  channel: string,
+  proxyProtocol: ProxyProtocol,
+): Listener {
+  let listenerType: string;
+
+  if (proxyProtocol.enabled) {
+    // 如果启用了代理协议，使用rtcp或rudp
+    listenerType = protocol === "udp" ? "rudp" : "rtcp";
+  } else {
+    // 否则使用标准类型
+    listenerType = protocol === "udp" ? "udp" : channel || "tcp";
+  }
+
+  const listener: Listener = {
+    type: listenerType,
+  };
+
+  // 如果启用了代理协议，添加元数据
+  if (proxyProtocol.enabled) {
+    listener.metadata = {
+      proxyProtocol: proxyProtocol.version,
+    };
+  }
+
+  return listener;
+}
+
+// 根据代理协议生成metadata对象
+function createMetadata(proxyProtocol: ProxyProtocol): Record<string, any> {
+  const metadata: Record<string, any> = {
+    enableStats: true,
+  };
+
+  if (proxyProtocol.enabled) {
+    metadata.proxyProtocol = proxyProtocol.version;
+  }
+
+  return metadata;
+}
+
+// 创建TCP服务配置
+function createTcpService(
+  f: Forward,
+  targetAddress: string,
+  options: ForwardOptions,
+): Service {
+  const { proxyProtocol = { enabled: false, version: "2" } } = options;
+
+  return {
+    name: `forward-tcp-${f.id}`,
+    addr: f.agentPort === 0 ? `${f.id}-agentPort` : `:${f.agentPort}`,
+    observer: "agent-observer",
+    handler: createHandler("tcp", proxyProtocol),
+    listener: createListener("tcp", "tcp", proxyProtocol),
+    metadata: createMetadata(proxyProtocol),
+    forwarder: {
+      nodes: [
+        {
+          name: `node-tcp-${f.id}`,
+          addr: targetAddress,
+          connector: { type: "tcp" },
+        },
+      ],
+    },
+  };
+}
+
+// 创建UDP服务配置
+function createUdpService(
+  f: Forward,
+  targetAddress: string,
+  options: ForwardOptions,
+): Service {
+  const { proxyProtocol = { enabled: false, version: "2" } } = options;
+
+  return {
+    name: `forward-udp-${f.id}`,
+    addr: f.agentPort === 0 ? `${f.id}-agentPort-udp` : `:${f.agentPort}`,
+    observer: "agent-observer",
+    handler: createHandler("udp", proxyProtocol),
+    listener: createListener("udp", "udp", proxyProtocol),
+    metadata: createMetadata(proxyProtocol),
+    forwarder: {
+      nodes: [
+        {
+          name: `node-udp-${f.id}`,
+          addr: targetAddress,
+          connector: { type: "udp" },
+        },
+      ],
+    },
+  };
+}
+
+// 创建带转发链的服务配置
+function createChainService(
+  f: Forward,
+  targetAddress: string,
+  options: ForwardOptions,
+  config: GostConfig,
+): Service {
+  const { channel = "tcp", proxyProtocol = { enabled: false, version: "2" } } =
+    options; // 移除未使用的listen变量
+
+  // 判断协议类型
+  const protocol = channel.includes("udp") ? "udp" : "tcp";
+
+  // 确保chains数组存在
+  config.chains = config.chains ?? []; // 使用nullish合并运算符替代逻辑或
+
+  // 创建转发链
+  const chain: Chain = {
+    name: `chain-${f.id}`,
+    hops: [
+      {
+        name: `hop-${f.id}`,
+        nodes: [
+          {
+            name: `node-${f.id}`,
+            addr: targetAddress,
+            connector: { type: "relay" },
+            dialer: {
+              type: channel,
+              tls: { serverName: f.target },
+            },
+          },
+        ],
+      },
+    ],
+  };
+
+  // 添加链
+  config.chains.push(chain);
+
+  // 创建服务
+  const service: Service = {
+    name: `forward-${f.id}`,
+    addr: f.agentPort === 0 ? `${f.id}-agentPort` : `:${f.agentPort}`,
+    observer: "agent-observer",
+    handler: createHandler(protocol, proxyProtocol),
+    listener: createListener(protocol, channel, proxyProtocol),
+    metadata: createMetadata(proxyProtocol),
+  };
+
+  // 设置服务的链引用
+  service.handler.chain = chain.name;
+
+  return service;
+}
+
 const Gost = async (agentId: string): Promise<Gost> => {
   const config = await getConfig({
     key: "AGENT_GOST_CONFIG",
@@ -276,79 +462,59 @@ const Gost = async (agentId: string): Promise<Gost> => {
         gost.config.services = [];
       }
 
-      const { channel, listen, forward = "tcp" } = f.options as ForwardOptions;
-      const service: Service = {
-        name: `forward-${f.id}`,
-        addr: f.agentPort === 0 ? `${f.id}-agentPort` : `:${f.agentPort}`,
-        observer: "agent-observer",
-        handler: {
-          type: listen === "tcp" ? "tcp" : "relay",
-        },
-        listener: {
-          type: listen === "tcp" ? "tcp" : channel ?? "tcp",
-        },
-        metadata: {
-          enableStats: true,
-        },
-      };
+      // 提取channel选项
+      const { channel } = f.options as ForwardOptions;
 
-      if (forward !== "tcp") {
-        if (!gost.config.chains) {
-          gost.config.chains = [];
-        }
-        const chain: Chain = {
-          name: `chain-${f.id}`,
-          hops: [
-            {
-              name: `hop-${f.id}`,
-              nodes: [
-                {
-                  name: `node-${f.id}`,
-                  addr: isIpv6(target)
-                    ? `[${target}]:${f.targetPort}`
-                    : `${target}:${f.targetPort}`,
-                  connector: {
-                    type: "relay",
-                  },
-                  dialer: {
-                    type: channel!,
-                    tls: {
-                      serverName: target,
-                    },
-                  },
-                },
-              ],
-            },
-          ],
-        };
-        gost.config.chains.push(chain);
-        service.handler.chain = chain.name;
+      // 构建目标地址
+      const targetAddress = isIpv6(target)
+        ? `[${target}]:${f.targetPort}`
+        : `${target}:${f.targetPort}`;
+
+      // 根据是否存在channel决定创建服务的方式
+      if (channel) {
+        // 有channel参数，创建带转发链的服务
+        const service = createChainService(
+          f,
+          targetAddress,
+          f.options as ForwardOptions,
+          gost.config,
+        );
+        gost.config.services.push(service);
       } else {
-        service.forwarder = {
-          nodes: [
-            {
-              name: `node-${f.id}`,
-              addr: isIpv6(target)
-                ? `[${target}]:${f.targetPort}`
-                : `${target}:${f.targetPort}`,
-              connector: {
-                type: "tcp",
-              },
-            },
-          ],
-        };
+        // 没有channel参数，创建TCP和UDP服务
+        const tcpService = createTcpService(
+          f,
+          targetAddress,
+          f.options as ForwardOptions,
+        );
+        const udpService = createUdpService(
+          f,
+          targetAddress,
+          f.options as ForwardOptions,
+        );
+
+        gost.config.services.push(tcpService, udpService);
       }
 
-      gost.config.services.push(service);
       await saveConfig("AGENT_GOST_CONFIG", gost.config, agentId);
     },
     removeForward: async (forward: Forward) => {
       if (!gost.config?.services) {
         return;
       }
+
+      // 获取需要移除的服务名称
+      const serviceNamesToRemove = [
+        `forward-${forward.id}`, // 标准名称 (旧版格式)
+        `forward-tcp-${forward.id}`, // TCP 服务名称
+        `forward-udp-${forward.id}`, // UDP 服务名称
+      ];
+
+      // 移除所有相关服务
       gost.config.services = gost.config.services.filter(
-        (service) => service.name !== `forward-${forward.id}`,
+        (service) => !serviceNamesToRemove.includes(service.name),
       );
+
       gost.config.chains = gost.config.chains?.filter(
         (chain) => chain.name !== `chain-${forward.id}`,
       );
@@ -448,8 +614,31 @@ export async function handleGostObserver(
   if (!events || events.length === 0 || events[0]!.kind !== "service") {
     throw new Error("Invalid events");
   }
-  let forwardId = events[0]!.service.split("-")[1];
-  const forward = await getForwardMust(forwardId!);
+
+  // 解析服务名称中的转发ID
+  const serviceName = events[0]!.service;
+  let forwardId: string | undefined;
+
+  // 支持新旧两种服务命名格式
+  if (
+    serviceName.startsWith("forward-tcp-") ||
+    serviceName.startsWith("forward-udp-")
+  ) {
+    forwardId = serviceName.split("-")[2]; // 新格式: forward-tcp-id 或 forward-udp-id
+  } else {
+    forwardId = serviceName.split("-")[1]; // 旧格式: forward-id
+  }
+
+  if (!forwardId) {
+    logger.error(
+      `Invalid service name format: ${serviceName}, original events: ${JSON.stringify(
+        events,
+      )}`,
+    );
+    throw new Error(`Invalid service name format: ${serviceName}`);
+  }
+
+  const forward = await getForwardMust(forwardId);
   const agent = await getAgentMust(forward.agentId);
   const connectConfig = agent.connectConfig as unknown as ConnectConfig;
   if (
@@ -471,7 +660,7 @@ export async function handleGostObserver(
       continue;
     }
 
-    forwardId = event.service.split("-")[1]!;
+    forwardId = event.service.split("-")[2]!;
     const forward = await getForwardMust(forwardId);
 
     if (event.type === "status" && event.status) {

@@ -32,6 +32,7 @@ import {
 import ForwardDelete from "~/app/[local]/(manage)/forward/_components/forward-delete";
 import ForwardModifyRemark from "~/app/[local]/(manage)/forward/_components/forward-modify-remark";
 import ForwardResetTraffic from "~/app/[local]/(manage)/forward/_components/forward-reset-traffic";
+import ForwardCheck from "~/app/[local]/(manage)/forward/_components/forward-check";
 import ForwardNew from "~/app/[local]/(manage)/forward/_components/forward-new";
 import ID from "~/app/[local]/_components/id";
 import UserColumn from "~/app/[local]/_components/user-column";
@@ -152,6 +153,24 @@ export default function ForwardTable({
         const option = ForwardStatusOptions.find(
           (option) => option.value === row.original.status,
         );
+
+        const statusIcon = option?.icon ? (
+          <ForwardCheck
+            trigger={
+              <div className="flex cursor-pointer items-center hover:text-blue-600">
+                <option.icon className="mr-1 inline-block h-4 w-4" />
+              </div>
+            }
+            forward={{
+              forwardId: row.original.agentId,
+              target: `${row.original.target}:${row.original.targetPort}`,
+              agentPort: row.original.agentPort,
+              forwardMethod: row.original.method,
+              targetType: "host",
+            }}
+          />
+        ) : null;
+
         return (
           <span
             className={cn(
@@ -159,9 +178,7 @@ export default function ForwardTable({
               row.original.status === "CREATED_FAILED" && "text-red-500",
             )}
           >
-            {option?.icon && (
-              <option.icon className="mr-1 inline-block h-4 w-4" />
-            )}
+            {statusIcon}
             {option?.label}
           </span>
         );
