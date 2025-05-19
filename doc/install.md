@@ -18,7 +18,7 @@ mkdir redis && cd redis
 ```
 
 - `redis.conf` 865 行，修改 `{your_password}` 的值为你的密码，这个为 vortex 连接密码。
-- `redis.conf` 1045 行，修改 `requirepass {your_password}` 的值为你的密码。
+- `redis.conf` 1045 行，修改 `requirepass {your_password}` 中的`{your_password}`为你的密码。
 
 启动容器
 需要开放两个端口，一个是 vortex 面板的端口，一个是 redis 的端口，agent 会连接 redis。
